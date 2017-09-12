@@ -1,6 +1,9 @@
 # Yolŋu Matha Language Tools
 This is a procrastination project, because writing an app to translate things is more fun than doing a translation assignment.
 
+You can see the progress at:
+https://yolngu-matha-tools.herokuapp.com/
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
