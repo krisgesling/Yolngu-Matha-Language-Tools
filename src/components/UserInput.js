@@ -18,7 +18,7 @@ class UserInput extends Component {
     return (
       <div className="user-input">
         <textarea value={this.state.userInput} onChange={this.inputUpdate} />
-        <p>{lookupWord(this.state.userInput)}</p>
+        <p className="output">{lookupWord(this.state.userInput)}</p>
       </div>
     );
   }
