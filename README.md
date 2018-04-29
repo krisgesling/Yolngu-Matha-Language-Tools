@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## To do
 - [ ] Fix carriage return error in scraper
-- [ ] Sanitize scraper input
+- [x] Sanitize scraper input - replace " for '
 - [ ] Add text autocomplete suggestions
 - [ ] Add multi-word input to ordered glossary
 - [ ] Add documentation for users

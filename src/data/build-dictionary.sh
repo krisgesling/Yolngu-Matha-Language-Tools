@@ -24,6 +24,7 @@ writeLine 'const dictionary = [{'
 while read -r line; do
   # TODO figure out error "[: too many arguments"
   # Maybe ${${line:0:3} = '\lx'}
+  # Base word
   if [ ${line:0:3} = '\lx' ]
     then
       if [ $wordCount -gt 0 ]
@@ -31,17 +32,20 @@ while read -r line; do
           writeLine "$word"'"},'
           engCount=0
       fi
-      word='"'"${line:4}"'": { "English": "'
+      lexeme=${line:4}
+      word='"'"${lexeme//\"/\'}"'": { "English": "'
       # word="\"${line:4}"\": { \"English\": \""
       ((wordCount++))
   fi
+  # English translation
   if [ "${line:0:3}" = '\ge' ]
     then
       if [ $engCount -gt 0 ]
-        then # add preceding comma
+        then # add preceding separator
           word="$word"'; '
       fi
-      word="$word${line:4}"
+      translation=${line:4}
+      word="$word${translation//\"/\'}"
       ((engCount++))
   fi
 done < $inputFile
