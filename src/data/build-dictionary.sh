@@ -19,7 +19,7 @@ function writeLine {
 touch $outputFile
 
 # Start JSON file
-writeLine 'const dictionary = [{'
+writeLine 'const dictionary = {'
 
 # read inputFile and write each word to outputFile
 while read -r line; do
@@ -34,7 +34,7 @@ while read -r line; do
           engCount=0
       fi
       lexeme=${line:4}
-      word='"'"${lexeme//\"/\'}"'": { "English": "'
+      word='"'"${lexeme//\"/\'}"'": { "En": "'
       # word="\"${line:4}"\": { \"English\": \""
       ((wordCount++))
   fi
@@ -53,6 +53,6 @@ done < $inputFile
 writeLine "$word"'"}'
 
 # End JSON file
-writeLine '}]'
+writeLine '}'
 writeLine ''
 writeLine 'export default dictionary;'
