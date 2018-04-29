@@ -2,13 +2,14 @@
 
 # Import source file from $1
 inputFile=$1
-outputFile='output.json'
+outputFile='dictionary.js'
 wordCount=0
 engCount=0
 lineCount=0
 
 function writeLine {
-  echo $1 >> $outputFile
+  local lineToWrite=$(echo $1|tr -d '\r')
+  echo $lineToWrite >> $outputFile
   ((lineCount++))
 }
 
@@ -25,7 +26,7 @@ while read -r line; do
   # TODO figure out error "[: too many arguments"
   # Maybe ${${line:0:3} = '\lx'}
   # Base word
-  if [ ${line:0:3} = '\lx' ]
+  if [ "${line:0:3}" = '\lx' ]
     then
       if [ $wordCount -gt 0 ]
         then

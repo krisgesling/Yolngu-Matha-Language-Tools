@@ -7,7 +7,7 @@ https://yolngu-matha-tools.herokuapp.com/
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 ## To do
-- [ ] Fix carriage return error in scraper
+- [x] Fix carriage return error in scraper
 - [x] Sanitize scraper input - replace " for '
 - [ ] Add text autocomplete suggestions
 - [ ] Add multi-word input to ordered glossary
