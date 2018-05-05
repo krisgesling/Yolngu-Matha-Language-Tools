@@ -2,7 +2,7 @@
 
 # Import source file from $1
 inputFile=$1
-outputFile='dictionary.js'
+outputFile='dictionary-suggestions.js'
 wordCount=0
 engCount=0
 lineCount=0
@@ -23,8 +23,6 @@ writeLine 'const dictionary = {'
 
 # read inputFile and write each word to outputFile
 while read -r line; do
-  # TODO figure out error "[: too many arguments"
-  # Maybe ${${line:0:3} = '\lx'}
   # Base word
   if [ "${line:0:3}" = '\lx' ]
     then
