@@ -58,6 +58,14 @@ describe('UserInput Component', () => {
       'newInput': 'a;j'
     }).newValue).toEqual('aŋ');
   });
+  it('Returns standard letters even if modKey true', () => {
+    const component = an.instance()
+    component.setState({'modKey': true});
+    expect(component.yolnguKeyboard({
+      'prevValue': 'a;cde',
+      'newInput': 'a;bcde'
+    }).newValue).toEqual('a;bcde');
+  });
   it('Returns yolngu characters mid-sentence', () => {
     const component = an.instance()
     component.setState({'modKey': true});

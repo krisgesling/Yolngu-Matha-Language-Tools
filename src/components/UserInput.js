@@ -22,7 +22,7 @@ class UserInput extends Component {
       newValue = newInput.split('');
       newValue.some((char, i, arr) => {
         if (char !== prevValue.charAt(i)) {
-          if (arr[i-1] === ';' && this.state.modKey) {
+          if (arr[i-1] === ';' && this.state.modKey && keyMap[char]) {
             newValue.splice((i-1), 2, keyMap[char])
           };
           char === ';'
