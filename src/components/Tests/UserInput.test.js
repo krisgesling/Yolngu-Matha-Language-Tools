@@ -6,7 +6,7 @@ import UserInput from '../UserInput';
 
 configure({ adapter: new Adapter() })
 
-describe('UserInput Component', () => {
+describe('Yolngu keyboard modifications', () => {
   const an = mount(<UserInput/>);
   it('Returns input for standard letters', () => {
     expect(an.instance().yolnguKeyboard({
