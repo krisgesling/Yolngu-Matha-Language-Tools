@@ -6,59 +6,44 @@ class UserInput extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { 'userInput': '', 'suggestions': [''], 'modifierKey': false };
+    this.state = { 'userInput': '', 'suggestions': [''], 'modKey': false };
     this.inputUpdate = this.inputUpdate.bind(this);
     this.selectedSuggestion = this.selectedSuggestion.bind(this);
     this.yolnguKeyboard = this.yolnguKeyboard.bind(this);
   }
 
-  yolnguKeyboard(key) {
-    let newKey, modified;
-    if (this.state.modifierKey) {
-      const keyMap = {
-        'a': 'ä',
-        'd': 'ḏ',
-        'j': 'ŋ',
-        'l': 'ḻ',
-        'n': 'ṉ',
-        't': 'ṯ',
-        'A': 'Ä',
-        'D': 'Ḏ',
-        'J': 'Ŋ',
-        'L': 'Ḻ',
-        'N': 'Ṉ',
-        'T': 'Ṯ'
-      }
-      if (keyMap[key]) {
-        newKey = keyMap[key]
-        modified = true;
-      } else {
-        modified = false
-      }
-      this.setState({'modifierKey': false})
-    } else {
-      modified = false;
-      if (key === ';') this.setState({ 'modifierKey': true})
+  yolnguKeyboard({prevValue, newInput}) {
+    const keyMap = {
+      'a': 'ä', 'd': 'ḏ', 'j': 'ŋ', 'l': 'ḻ', 'n': 'ṉ', 't': 'ṯ',
+      'A': 'Ä', 'D': 'Ḏ', 'J': 'Ŋ', 'L': 'Ḻ', 'N': 'Ṉ', 'T': 'Ṯ'
+    }
+    let newValue;
+    if ((newInput.length-prevValue.length) === 1) {
+      newValue = newInput.split('');
+      newValue.some((char, i, arr) => {
+        if (char !== prevValue.charAt(i)) {
+          if (arr[i-1] === ';' && this.state.modKey) {
+            newValue.splice((i-1), 2, keyMap[char])
+          };
+          char === ';'
+            ? this.setState({ 'modKey': true})
+            : this.setState({'modKey': false});
+        }
+      })
     }
     return {
-      'key': (newKey ? newKey : key),
-      'modified': modified
+      'newValue': newValue ? newValue.join('') : newInput
     };
   }
 
   inputUpdate(e) {
-    // TODO find diff between newValue and state.userInput
-    const inpVal = e.target.value;
-    const charIndex = inpVal.length-1
-    let newInputArr = inpVal.split('');
-    const yolnguValue = this.yolnguKeyboard(inpVal[charIndex]);
-    yolnguValue.modified
-      ? newInputArr.splice(charIndex-1, 2, yolnguValue.key)
-      : newInputArr[charIndex] = this.yolnguKeyboard(inpVal[charIndex]).key;
-    const newValue = newInputArr.join('')
-    const inputLookup = lookupWord(newValue);
+    const yolnguVal = this.yolnguKeyboard({
+      'prevValue': this.state.userInput,
+      'newInput': e.target.value
+    });
+    const inputLookup = lookupWord(yolnguVal.newValue);
     this.setState({
-      'userInput': newValue,
+      'userInput': yolnguVal.newValue,
       'definition': inputLookup.definition,
       'suggestions': inputLookup.suggestions
     });

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import lookupWord from './LookupWord';
+import lookupWord from '../LookupWord';
 
 it('Returns a definition string if word exists', () => {
   expect(lookupWord('-guŋ').definition).toEqual('from')
