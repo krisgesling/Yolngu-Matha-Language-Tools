@@ -16,9 +16,16 @@ describe('UserInput Component', () => {
   });
   it('Sets modKey true when ; typed', () => {
     const component = an.instance()
+    component.setState({'modKey': false});
     component.yolnguKeyboard({
       'prevValue': 'a',
       'newInput': 'a;'
+    })
+    expect(component.state.modKey).toEqual(true);
+    component.setState({'modKey': false});
+    component.yolnguKeyboard({
+      'prevValue': 'adskjfhs',
+      'newInput': 'a;dskjfhs'
     })
     expect(component.state.modKey).toEqual(true);
   });
@@ -28,6 +35,18 @@ describe('UserInput Component', () => {
     component.yolnguKeyboard({
       'prevValue': 'a;',
       'newInput': 'a;q'
+    });
+    expect(component.state.modKey).toEqual(false);
+    component.setState({'modKey': true});
+    component.yolnguKeyboard({
+      'prevValue': 'a;dsflgkjsdf',
+      'newInput': 'a;qdsflgkjsdf'
+    });
+    expect(component.state.modKey).toEqual(false);
+    component.setState({'modKey': true});
+    component.yolnguKeyboard({
+      'prevValue': 'a;dsflgkjsdf',
+      'newInput': 'a;jdsflgkjsdf'
     });
     expect(component.state.modKey).toEqual(false);
   });

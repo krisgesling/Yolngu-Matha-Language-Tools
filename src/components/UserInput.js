@@ -28,7 +28,8 @@ class UserInput extends Component {
           char === ';'
             ? this.setState({ 'modKey': true})
             : this.setState({'modKey': false});
-        }
+          return true
+        } else return false
       })
     }
     return {
