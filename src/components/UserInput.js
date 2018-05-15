@@ -6,7 +6,11 @@ class UserInput extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { 'userInput': '', 'suggestions': [''], 'modKey': false };
+    this.state = {
+      'userInput': '',
+      'suggestions': [''],
+      'modKey': false
+    };
     this.inputUpdate = this.inputUpdate.bind(this);
     this.selectedSuggestion = this.selectedSuggestion.bind(this);
     this.yolnguKeyboard = this.yolnguKeyboard.bind(this);
@@ -17,15 +21,14 @@ class UserInput extends Component {
       'a': 'ä', 'd': 'ḏ', 'j': 'ŋ', 'l': 'ḻ', 'n': 'ṉ', 't': 'ṯ',
       'A': 'Ä', 'D': 'Ḏ', 'J': 'Ŋ', 'L': 'Ḻ', 'N': 'Ṉ', 'T': 'Ṯ'
     }
-    let newValue; //, caretPos;
+    let newValue, modified;
     if ((newInput.length-prevValue.length) === 1) {
       newValue = newInput.split('');
       newValue.some((char, i, arr) => {
         if (char !== prevValue.charAt(i)) {
-          // caretPos = i+1;
           if (arr[i-1] === ';' && this.state.modKey && keyMap[char]) {
-
             newValue.splice((i-1), 2, keyMap[char])
+            modified = true
           };
           char === ';'
             ? this.setState({ 'modKey': true})
@@ -35,12 +38,13 @@ class UserInput extends Component {
       })
     }
     return {
-      'newValue': newValue ? newValue.join('') : newInput //,
-      // 'caretPos': caretPos ? caretPos : newInput.length
+      'newValue': newValue ? newValue.join('') : newInput,
+      'modified': modified ? modified : false
     };
   }
 
-  getCaretPosition(element) {
+  getCaretPosition(element, mod) {
+    const m = mod ? -1 : 0;
     // IE < 9 support
     if (document.selection) {
       element.focus();
@@ -48,14 +52,14 @@ class UserInput extends Component {
       const rangeLen = range.text.length;
       range.moveStart('character', -element.value.length);
       const start = range.text.length - rangeLen;
-      return {'start': start, 'end': start + rangeLen };
+      return {'start': start+m, 'end': start+m + rangeLen };
     }
     // IE >=9 and other browsers
     // eslint-disable-next-line
     else if (element.selectionStart || element.selectionStart == '0') {
-      return {'start': element.selectionStart, 'end': element.selectionEnd };
+      return {'start': (element.selectionStart+m), 'end': (element.selectionEnd+m) };
     } else {
-      return {'start': 0, 'end': 0}
+      return {'start': 0+m, 'end': 0+m}
     }
   }
   setCaretPosition({element, start, end}) {
@@ -70,11 +74,11 @@ class UserInput extends Component {
     // IE >= 9 and other browsers
     // Other pages:
     // https://github.com/facebook/react/issues/955
-    // https://stackoverflow.com/questions/42038590/when-to-use-react-setstate-callback
     if(element.setSelectionRange) {
       console.log('Path #1');
       element.focus();
       element.setSelectionRange(start, end);
+      console.log('Changed selectionStart: ', element.selectionStart);
     }
     // IE < 9
     else if (element.createTextRange) {
@@ -93,19 +97,18 @@ class UserInput extends Component {
       'newInput': e.target.value
     });
     const inputLookup = lookupWord(yolnguVal.newValue);
-    const newCaretPos = this.getCaretPosition(e.target);
-    console.log('newCaretPos: ', newCaretPos);
+    const caretPos = this.getCaretPosition(e.target, yolnguVal.modified);
+    console.log('caretPos: ', caretPos);
     this.setState({
       'userInput': yolnguVal.newValue,
       'definition': inputLookup.definition,
       'suggestions': inputLookup.suggestions
-    });
-    this.setCaretPosition({
+    }, this.setCaretPosition({
         'element': e.target,
-        'start': newCaretPos.start,
-        'end': newCaretPos.end
-        //'start': yolnguVal.caretPos
-    })
+        'start': caretPos.start,
+        'end': caretPos.end
+       })
+    );
   }
 
   selectedSuggestion(word) {
@@ -116,8 +119,14 @@ class UserInput extends Component {
   render() {
     return (
       <div className="user-input">
-        <textarea value={this.state.userInput} onChange={this.inputUpdate} />
-        <WordSuggestions words={this.state.suggestions} onSelectSuggestion={this.selectedSuggestion}/>
+        <textarea
+          value={this.state.userInput}
+          onChange={this.inputUpdate}
+        />
+        <WordSuggestions
+          words={this.state.suggestions}
+          onSelectSuggestion={this.selectedSuggestion}
+        />
         <p>{this.state.definition}</p>
       </div>
     );
