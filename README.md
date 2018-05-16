@@ -27,7 +27,7 @@ This is a procrastination project, because writing an app to translate things is
 - [x] Fix carriage return error in scraper
 - [x] Sanitize scraper input
 - [x] Add text autocomplete suggestions
-- [ ] Add yolngu keyboard functionality to text input
+- [x] Add yolngu keyboard functionality to text input
 - [ ] Implement localStorage for dictionary file - hash/versioning to see if it needs updating?
 - [ ] Add multi-word input to ordered glossary
 - [ ] Add documentation for users
