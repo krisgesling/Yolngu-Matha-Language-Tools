@@ -6,18 +6,15 @@ Demo version live at: https://yolngu-matha-tools.herokuapp.com/
 Returns real-time definitions for single words and suggests complete words to choose from.
 
 Type in yolŋu characters by first typing ';' then the corresponding key.
-'a' = 'ä'
-'d' = 'ḏ'
-'j' = 'ŋ'
-'l' = 'ḻ'
-'n' = 'ṉ'
-'t' = 'ṯ'
-'A' = 'Ä'
-'D' = 'Ḏ'
-'J' = 'Ŋ'
-'L' = 'Ḻ'
-'N' = 'Ṉ'
-'T' = 'Ṯ'
+
+| Lowercase | Uppercase |
+| --- | --- |
+| a = ä | A = Ä |
+| d = ḏ | D = Ḏ |
+| j = ŋ | J = Ŋ |
+| l = ḻ | L = Ḻ |
+| n = ṉ | N = Ṉ |
+| t = ṯ | T = Ṯ |
 
 Full dictionary is not publicly available.
 

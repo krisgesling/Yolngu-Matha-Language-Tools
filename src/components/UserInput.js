@@ -71,7 +71,7 @@ class UserInput extends Component {
     const mockEvent = {'target': {'value': word.selectedSuggestion}};
     this.handleChange(mockEvent);
   }
-  
+
   render() {
     return (
       <div className="user-input">
@@ -84,6 +84,7 @@ class UserInput extends Component {
           words={this.state.suggestions}
           onSelectSuggestion={this.selectedSuggestion}
         />
+        <h3>Definition</h3>
         <p>{this.state.definition}</p>
       </div>
     );
