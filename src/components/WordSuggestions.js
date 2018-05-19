@@ -26,19 +26,30 @@ class WordSuggestions extends Component {
     this.props.onSelectSuggestion({selectedSuggestion: word})
   }
   render() {
+    if (this.props.words[0] && this.props.words[0].length > 0) {
+      return (
+        <div className="word-suggestions">
+          <h3>Did you mean...</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Yolŋu Matha</th>
+                <th>English</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.listSuggestions(this.props.words)}
+            </tbody>
+          </table>
+        </div>
+      );
+    } else {
+      return (
+        <div className="word-suggestions">
+        </div>
+      )
+    }
 
-    return (
-      <div className="word-suggestions">
-        <h3>Did you mean...</h3>
-        <table>
-          <tr>
-            <th>Yolŋu Matha</th>
-            <th>English</th>
-          </tr>
-          {this.listSuggestions(this.props.words)}
-        </table>
-      </div>
-    );
   }
 
 }
