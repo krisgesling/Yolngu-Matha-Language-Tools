@@ -13,7 +13,12 @@ function lookupWord(inputWord) {
   const definition = (dictionary[sanitizedInputWord])
     ? dictionary[sanitizedInputWord].En
     : ''
- return {'definition': definition, 'suggestions': suggestions};
+ return {
+   'definition': definition,
+   'suggestions': (suggestions.length === 1 &&
+                   suggestions[0] === sanitizedInputWord)
+                   ? [] : suggestions
+ };
 }
 
 export default lookupWord

@@ -76,6 +76,7 @@ class UserInput extends Component {
     return (
       <div className="user-input">
         <textarea
+          autoFocus={true}
           value={this.state.userInput}
           onChange={this.handleChange}
           ref="input"

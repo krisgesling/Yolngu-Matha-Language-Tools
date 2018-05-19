@@ -19,9 +19,6 @@ class WordSuggestions extends Component {
       </tr>
     )
   }
-  createButton(word, i) {
-    return <button key={i} onClick={() => this.selectSuggestion(word)}>{word}</button>
-  }
   selectSuggestion(word) {
     this.props.onSelectSuggestion({selectedSuggestion: word})
   }
