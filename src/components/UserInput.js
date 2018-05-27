@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import lookupWord from './LookupWord';
 import WordSuggestions from './WordSuggestions';
+import Definitions from './Definitions';
 
 class UserInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
       'userInput': '',
-      'suggestions': [''],
+      'suggestions': {},
       'modKey': false,
-      'caretPos': 0
+      'multiWord': false,
+      'caretPos': 0,
+      'definitions': {}
     };
     this.handleChange = this.handleChange.bind(this);
     this.selectedSuggestion = this.selectedSuggestion.bind(this);
@@ -62,10 +65,22 @@ class UserInput extends Component {
       : e.target.selectionEnd;
     this.setState({
       'userInput': yolnguVal.newValue,
-      'definition': inputLookup.definition,
       'suggestions': inputLookup.suggestions,
+      'multiWord': inputLookup.multiWord,
       'caretPos': Number(caretPos)
     });
+    if (inputLookup.definition) {
+      // TODO return definition as object already
+      let newObj = {};
+      newObj[inputLookup.word] = inputLookup.definition;
+      const newDefs = {
+        ...this.state.definitions,
+        ...newObj
+      };
+      this.setState(prevState => ({
+        'definitions': newDefs
+      }));
+    }
   }
   selectedSuggestion(word) {
     const mockEvent = {'target': {'value': word.selectedSuggestion}};
@@ -85,8 +100,9 @@ class UserInput extends Component {
           words={this.state.suggestions}
           onSelectSuggestion={this.selectedSuggestion}
         />
-        <h3>Definition</h3>
-        <p>{this.state.definition}</p>
+        <Definitions
+          words={this.state.definitions}
+        />
       </div>
     );
   }

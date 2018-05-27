@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import lookupWord from './LookupWord';
 
 class WordSuggestions extends Component {
   listSuggestions(words) {
-    const numOfBtns = 8;
-    const list = (words.length > numOfBtns)
-      ? words.slice(0,numOfBtns)
-      : words
+    const list = Object.keys(words)
+    // TODO why am I iterating over object.keys twice for no reason?
     return list.map((word, i) => {
       return this.createTableRow(word, i+1)
     })
@@ -15,7 +12,7 @@ class WordSuggestions extends Component {
     return (
       <tr key={i} onClick={() => this.selectSuggestion(word)}>
         <td>{word}</td>
-        <td>{lookupWord(word).definition}</td>
+        <td>{this.props.words[word]}</td>
       </tr>
     )
   }
@@ -23,7 +20,7 @@ class WordSuggestions extends Component {
     this.props.onSelectSuggestion({selectedSuggestion: word})
   }
   render() {
-    if (this.props.words[0] && this.props.words[0].length > 0) {
+    if (Object.keys(this.props.words).length > 0) {
       return (
         <div className="word-suggestions">
           <h3>Did you mean...</h3>

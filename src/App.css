@@ -25,12 +25,34 @@ h2 {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.user-input {
+div.user-input {
   font-size: 18px;
 }
+@media (min-width: 600px) {
+  div.user-input {
+    display: grid;
+    grid-column-gap: 10%;
+    grid-template-columns: 45%;
+  }
+  div.word-suggestions {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  div.definitions {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 2 span;
+  }
+}
+@media (max-width: 1400px) {
+  div.user-input {
+    width: 90%
+  }
+}
+
 th:nth-of-type(1) {
   padding-right: 4em;
 }
-td {
+.word-suggestions td {
   cursor: cell;
 }
