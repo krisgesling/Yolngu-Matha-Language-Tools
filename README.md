@@ -16,7 +16,7 @@ Type in yolŋu characters by first typing ';' then the corresponding key.
 | n = ṉ | N = Ṉ |
 | t = ṯ | T = Ṯ |
 
-Full dictionary is not publicly available.
+Full dictionary is not publicly available at this time.
 
 This is a procrastination project, because writing an app to translate things is more fun than doing a translation assignment.
 
@@ -28,3 +28,5 @@ This is a procrastination project, because writing an app to translate things is
 - [ ] Implement localStorage for dictionary file - hash/versioning to see if it needs updating?
 - [ ] Add multi-word input to ordered glossary
 - [ ] Add documentation for users
+- [ ] Add animations for UI changes
+- [ ] Consider merging Definitions and Suggestions components

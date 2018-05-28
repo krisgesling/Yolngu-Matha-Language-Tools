@@ -15,6 +15,7 @@ class UserInput extends Component {
       'definitions': {}
     };
     this.handleChange = this.handleChange.bind(this);
+    this.removeDefinition = this.removeDefinition.bind(this);
     this.selectedSuggestion = this.selectedSuggestion.bind(this);
     this.yolnguKeyboard = this.yolnguKeyboard.bind(this);
   }
@@ -82,8 +83,15 @@ class UserInput extends Component {
       }));
     }
   }
+  removeDefinition(word) {
+    let newDefs = this.state.definitions;
+    delete newDefs[word];
+    this.setState(prevState => ({
+      'definitions': newDefs
+    }));
+  }
   selectedSuggestion(word) {
-    const mockEvent = {'target': {'value': word.selectedSuggestion}};
+    const mockEvent = {'target': {'value': word}};
     this.handleChange(mockEvent);
   }
 
@@ -102,6 +110,7 @@ class UserInput extends Component {
         />
         <Definitions
           words={this.state.definitions}
+          removeDefinition={this.removeDefinition}
         />
       </div>
     );

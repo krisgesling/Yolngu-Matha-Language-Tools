@@ -10,11 +10,19 @@ class Definitions extends Component {
   }
   createTableRow(word, i) {
     return (
-      <tr key={i}>
+      <tr key={i} name={word}>
         <td>{word}</td>
         <td>{this.props.words[word]}</td>
+        <td>
+          <button className="btn remove" onClick={() => this.removeWord(word)}>
+            -
+          </button>
+        </td>
       </tr>
     )
+  }
+  removeWord(word) {
+    this.props.removeDefinition(word)
   }
   render() {
     if (Object.keys(this.props.words).length > 0) {

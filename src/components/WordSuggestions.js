@@ -17,7 +17,7 @@ class WordSuggestions extends Component {
     )
   }
   selectSuggestion(word) {
-    this.props.onSelectSuggestion({selectedSuggestion: word})
+    this.props.onSelectSuggestion(word)
   }
   render() {
     if (Object.keys(this.props.words).length > 0) {

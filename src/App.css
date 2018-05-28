@@ -49,10 +49,32 @@ div.user-input {
     width: 90%
   }
 }
-
+tr {
+  vertical-align: top;
+}
+td {
+  padding-bottom: 0.6em;
+}
 th:nth-of-type(1) {
-  padding-right: 4em;
+  padding-right: 3em;
 }
 .word-suggestions td {
   cursor: cell;
+}
+table .btn.remove {
+  background-color: white;
+  border: solid 1px;
+  border-color: red;
+  border-radius: 50%;
+  color: red;
+  font-weight: 700;
+}
+table .btn.remove:hover {
+  background-color: white;
+  background-color: rgba(255,0,0,0.1);
+}
+table .btn.remove:focus {
+  background-color: rgb(255,0,0);
+  background-color: rgba(255,0,0,1);
+  color: rgb(255,255,255)
 }
