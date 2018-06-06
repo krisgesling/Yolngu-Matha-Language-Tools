@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-size: 18px;
 }
 
 .App-logo {
@@ -9,12 +10,19 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 120px;
   padding: 20px;
   color: white;
 }
-h2 {
+h1 {
   margin-top: -0.1em;
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.6em;
+}
+h3 {
+  font-size: 1.4em;
 }
 
 .App-intro {
@@ -24,9 +32,6 @@ h2 {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-div.user-input {
-  font-size: 18px;
 }
 @media (min-width: 600px) {
   div.user-input {
@@ -77,4 +82,180 @@ table .btn.remove:focus {
   background-color: rgb(255,0,0);
   background-color: rgba(255,0,0,1);
   color: rgb(255,255,255)
+}
+
+/*** MENU ***/
+.menu {
+  display: grid;
+  position: fixed;
+  top: 0px;
+  transition: 0.5s;
+  min-height: 100%;
+  padding: 30px;
+  background-color: #222;
+  color: #fff;
+  align-content: start;
+}
+.menu.active {
+  right: 0;
+  transition: 0.5s;
+}
+.btn-tour {
+  margin: auto;
+  padding: 0.6em 1.4em;
+  border-radius: 6px;
+  color: #222;
+  background-color: #fff;
+  font-size: 1.4em;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-tour:hover {
+  background-color: #ccc;
+  color: #000;
+}
+.menu section {
+  margin: 10px 70px;
+  max-height: 3em;
+  overflow-y: hidden;
+  transition: max-height 1s;
+}
+.menu section.active {
+  height: 100%;
+  max-height: 500px;
+  overflow-y: scroll;
+  transition: max-height 1s;
+}
+.menu h3 {
+  margin: 0.6em auto;
+  cursor: pointer;
+}
+p {
+  text-align: left;
+}
+.menu td {
+  text-align: left;
+}
+@media (min-width: 800px) {
+  .menu {
+    width: 600px;
+    right: -565px;
+  }
+}
+@media (max-width:800px) {
+  .menu {
+    width: 400px;
+    right: -365px;
+  }
+  .menu section {
+    margin: 10px 10px;
+  }
+  .menu section, .menu .btn-tour {
+    margin: 0 100px;
+    transition: margin 1s;
+  }
+  .menu.active section {
+    margin: 10px 10px;
+    transition: margin 1s;
+  }
+  .menu.active .btn-tour {
+    margin: auto;
+    transition: margin 1s;
+  }
+}
+@media (max-width:450px) {
+  .menu {
+    width: 200px;
+    right: -165px;
+  }
+  .menu td:nth-of-type(1) {
+    padding-right: 1em;
+  }
+  .menu th {
+    display: none;
+  }
+}
+/** Hamburger menu animation **/
+.btn-hamburger {
+    display: inline-block;
+    cursor: pointer;
+    /* margin: 15px 30px; */
+}
+.ham-bar1, .ham-bar2, .ham-bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #fff;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+.active .ham-bar1 {
+    -ms-transform: rotate(-45deg) translate(-9px, 6px) ;
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-45deg) translate(-9px, 6px) ;
+}
+.active .ham-bar2 {
+    opacity: 0;
+}
+.active .ham-bar3 {
+    -ms-transform: rotate(45deg) translate(-8px, -8px) ;
+    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    transform: rotate(45deg) translate(-8px, -8px) ;
+}
+
+/** Config options section **/
+section.options {
+  display: grid;
+  justify-items: start;
+}
+span.label {
+  margin-bottom: 0.3em;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input {display:none;}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #2196F3;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+.switch .label {
+  margin-top: 26px;
 }
