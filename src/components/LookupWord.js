@@ -3,12 +3,13 @@ import dictionary from '../data/dictionary.js'
 function lookupWord(inputWord) {
   const cleanInput = inputWord.toLowerCase();
   let multiWord = false;
+  const regex = new RegExp(`.*${cleanInput}.*`);
   const suggestionList = cleanInput.length > 0
     ? Object.keys(dictionary).filter((word, i) => {
       if (word.substr(0, cleanInput.length).toLowerCase() === cleanInput) {
         if (!multiWord && word.indexOf(' ')>0 && word!==cleanInput) { multiWord = true }
         return true
-      } else return false
+      } else return regex.test(dictionary[word].En);
     })
     : [];
 
