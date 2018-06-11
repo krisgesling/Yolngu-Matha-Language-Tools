@@ -1,21 +1,8 @@
+/***** BASE STYLES *****/
 .App {
-  text-align: center;
   font-size: 18px;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 120px;
-  padding: 20px;
-  color: white;
-}
 h1 {
-  margin-top: -0.1em;
   font-size: 2em;
 }
 h2 {
@@ -24,91 +11,61 @@ h2 {
 h3 {
   font-size: 1.4em;
 }
-
-.App-intro {
-  font-size: large;
+p {
+  text-align: left;
 }
+/***** END - BASE STYLES *****/
 
+/***** HEADER *****/
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 50px;
+  margin-top: 10px;
+  z-index: 90;
+}
+.App-header {
+  background-color: #222;
+  color: #fff;
+  height: 120px;
+  text-align: center;
+}
+.App-header h1 {
+  margin-top: 0;
+  z-index: 95;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-@media (min-width: 600px) {
-  div.user-input {
-    display: grid;
-    grid-column-gap: 10%;
-    grid-template-columns: 45%;
-  }
-  div.word-suggestions {
-    grid-column-start: 1;
-    grid-column-end: 2;
-  }
-  div.definitions {
-    grid-column-start: 2;
-    grid-row-start: 1;
-    grid-row-end: 2 span;
-  }
-}
-@media (max-width: 1400px) {
-  div.user-input {
-    width: 90%
-  }
-}
-tr {
-  vertical-align: top;
-}
-td {
-  padding-bottom: 0.6em;
-}
-th:nth-of-type(1) {
-  padding-right: 3em;
-}
-.word-suggestions td {
-  cursor: cell;
-}
-table .btn.remove {
-  background-color: white;
-  border: solid 1px;
-  border-color: red;
-  border-radius: 50%;
-  color: red;
-  font-weight: 700;
-}
-table .btn.remove:hover {
-  background-color: white;
-  background-color: rgba(255,0,0,0.1);
-}
-table .btn.remove:focus {
-  background-color: rgb(255,0,0);
-  background-color: rgba(255,0,0,1);
-  color: rgb(255,255,255)
-}
 
 /*** MENU ***/
 .menu {
-  display: grid;
-  position: fixed;
-  top: 0px;
-  transition: 0.5s;
-  min-height: 100%;
-  padding: 30px;
+  align-content: start;
   background-color: #222;
   color: #fff;
-  align-content: start;
+  display: grid;
+  height: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 120px;
+  transition: 0.5s;
+  width: 100%;
+  z-index: 80;
 }
 .menu.active {
-  right: 0;
+  height: calc(100vh - 120px);
   transition: 0.5s;
 }
 .btn-tour {
-  margin: auto;
-  padding: 0.6em 1.4em;
+  background-color: #fff;
   border-radius: 6px;
   color: #222;
-  background-color: #fff;
+  cursor: pointer;
+  display: none;
   font-size: 1.4em;
   font-weight: 700;
-  cursor: pointer;
+  margin: auto;
+  padding: 0.6em 1.4em;
 }
 .btn-tour:hover {
   background-color: #ccc;
@@ -116,36 +73,29 @@ table .btn.remove:focus {
 }
 .menu section {
   margin: 10px 70px;
-  max-height: 3em;
+  height: 1.6em;
   overflow-y: hidden;
-  transition: max-height 1s;
+  transition: height 1s;
 }
 .menu section.active {
-  height: 100%;
-  max-height: 500px;
+  height: calc(100vh - 120px - 3em);
   overflow-y: scroll;
-  transition: max-height 1s;
+  transition: height 1s;
 }
 .menu h3 {
-  margin: 0.6em auto;
+  margin: auto;
   cursor: pointer;
-}
-p {
-  text-align: left;
 }
 .menu td {
   text-align: left;
 }
-@media (min-width: 800px) {
-  .menu {
-    width: 600px;
-    right: -565px;
-  }
+::-webkit-scrollbar {
+  background: transparent;
+  width: 0;
 }
 @media (max-width:800px) {
   .menu {
-    width: 400px;
-    right: -365px;
+    width: 100%;
   }
   .menu section {
     margin: 10px 10px;
@@ -164,10 +114,6 @@ p {
   }
 }
 @media (max-width:450px) {
-  .menu {
-    width: 200px;
-    right: -165px;
-  }
   .menu td:nth-of-type(1) {
     padding-right: 1em;
   }
@@ -175,34 +121,52 @@ p {
     display: none;
   }
 }
-/** Hamburger menu animation **/
+/* MENU ICON */
 .btn-hamburger {
-    display: inline-block;
-    cursor: pointer;
-    /* margin: 15px 30px; */
+  cursor: pointer;
+  display: inline-block;
+  position: fixed;
+  top: 15px;
+  left: 15px;
 }
 .ham-bar1, .ham-bar2, .ham-bar3 {
-    width: 35px;
-    height: 5px;
-    background-color: #fff;
-    margin: 6px 0;
-    transition: 0.4s;
+  width: 35px;
+  height: 5px;
+  background-color: #fff;
+  margin: 6px 0;
+  transition: 0.4s;
 }
 .active .ham-bar1 {
-    -ms-transform: rotate(-45deg) translate(-9px, 6px) ;
-    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
-    transform: rotate(-45deg) translate(-9px, 6px) ;
+  -ms-transform: rotate(-45deg) translate(-9px, 6px) ;
+  -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+  transform: rotate(-45deg) translate(-9px, 6px) ;
 }
 .active .ham-bar2 {
-    opacity: 0;
+  opacity: 0;
 }
 .active .ham-bar3 {
-    -ms-transform: rotate(45deg) translate(-8px, -8px) ;
-    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
-    transform: rotate(45deg) translate(-8px, -8px) ;
+  -ms-transform: rotate(45deg) translate(-8px, -8px) ;
+  -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+  transform: rotate(45deg) translate(-8px, -8px) ;
 }
-
-/** Config options section **/
+@media (max-width:800px) {
+  .ham-bar1, .ham-bar2, .ham-bar3 {
+    width: 28px;
+    height: 4px;
+  }
+  .active .ham-bar1 {
+    -ms-transform: rotate(-45deg) translate(-8px, 6px) ;
+    -webkit-transform: rotate(-45deg) translate(-8px, 6px) ;
+    transform: rotate(-45deg) translate(-8px, 6px) ;
+  }
+  .active .ham-bar3 {
+    -ms-transform: rotate(45deg) translate(-8px, -7px) ;
+    -webkit-transform: rotate(45deg) translate(-8px, -7px) ;
+    transform: rotate(45deg) translate(-8px, -7px) ;
+  }
+}
+/* END MENU ICON */
+/* MENU CONFIG */
 section.options {
   display: grid;
   justify-items: start;
@@ -259,3 +223,72 @@ input:checked + .slider:before {
 .switch .label {
   margin-top: 26px;
 }
+/* END MENU CONFIG */
+/*** END MENU ***/
+/***** END HEADER *****/
+
+/***** USER INPUT *****/
+@media (min-width: 600px) {
+  div.user-input {
+    display: grid;
+    grid-column-gap: 10%;
+    grid-template-columns: 45%;
+  }
+  div.word-suggestions {
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  div.definitions {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-row-end: 2 span;
+  }
+}
+@media (max-width:800px) {
+  .user-input textarea {
+    height: 2em;
+    margin: 0.6em 0;
+  }
+  .user-input h3 {
+    font-size: 1.3em;
+    margin: 0.6em 0;
+  }
+}
+@media (max-width: 1400px) {
+  div.user-input {
+    width: 90%
+  }
+}
+tr {
+  vertical-align: top;
+}
+td {
+  padding-bottom: 0.6em;
+}
+th:nth-of-type(1) {
+  padding-right: 3em;
+}
+.word-suggestions td {
+  cursor: cell;
+}
+
+/* DEFINITIONS */
+table .btn.remove {
+  background-color: white;
+  border: solid 1px;
+  border-color: red;
+  border-radius: 50%;
+  color: red;
+  font-weight: 700;
+}
+table .btn.remove:hover {
+  background-color: white;
+  background-color: rgba(255,0,0,0.1);
+}
+table .btn.remove:focus {
+  background-color: rgb(255,0,0);
+  background-color: rgba(255,0,0,1);
+  color: rgb(255,255,255)
+}
+/* END DEFINITIONS */
+/***** END USER INPUT *****/
