@@ -10,6 +10,7 @@ class Menu extends Component {
     };
     this.toggleMenu = this.toggleMenu.bind(this);
     this.toggleMenuItem = this.toggleMenuItem.bind(this);
+    this.toggleOption = this.toggleOption.bind(this);
     this.setItemClassName = this.setItemClassName.bind(this);
   }
   toggleMenu(e) {
@@ -21,14 +22,17 @@ class Menu extends Component {
   }
   toggleMenuItem(e) {
     const targetItemClass = e.target.parentElement.classList[0];
-    console.log('target: ', targetItemClass);
-    console.log('state: ', this.state.menuItemActive);
-    console.log('equal: ', this.state.menuItemActive === targetItemClass);
     const newState = this.state.menuItemActive === targetItemClass
       ? '' : targetItemClass;
     this.setState(prevState => ({
       'menuItemActive': newState
     }));
+  }
+  toggleOption(e) {
+    const key = e.target.id.slice(12);
+    let newObj = {'userOptions': {}}
+    newObj.userOptions[key] = this.props.userOptions[key] ? false : true;
+    this.props.updateState(newObj);
   }
   setItemClassName(baseClass) {
     return this.state.menuItemActive === baseClass
@@ -81,8 +85,12 @@ class Menu extends Component {
           <h3 onClick={this.toggleMenuItem}>Options</h3>
 
           <span className="label">Sort A-Z</span>
-          <label className="switch">
-            <input type="checkbox" />
+          <label className="switch" >
+            <input
+              id="user-option-sortAZ"
+              type="checkbox"
+              checked={this.props.userOptions.sortAZ}
+              onChange={this.toggleOption}/>
             <span className="slider round"></span>
           </label>
         </section>

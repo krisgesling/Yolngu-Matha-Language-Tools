@@ -5,15 +5,38 @@ import UserInput from './components/UserInput.js';
 import Menu from './components/Menu.js';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      'userOptions': {
+        'sortAZ': false
+      }
+    };
+    this.updateState = this.updateState.bind(this);
+  }
+  updateState(newObj) {
+    this.setState(prevState => ({
+      ...newObj
+    }));
+  }
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <Menu />
-          <img src={logo} className="App-logo" alt="logo" />
+          <Menu
+            userOptions={this.state.userOptions}
+            updateState={this.updateState}
+          />
+          <img
+            src={logo}
+            className="App-logo"
+            alt="logo"
+          />
           <h1>Yolŋu Matha</h1>
         </div>
-        <UserInput />
+        <UserInput
+          userOptions={this.state.userOptions}
+        />
 
       </div>
     );

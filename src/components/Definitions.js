@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-// import lookupWord from './LookupWord';
 
 class Definitions extends Component {
   listDefinitions(words) {
-    const list = Object.keys(words)
-    return list.map((word, i) => {
+    const list = Object.keys(words).map((word, i) => {
       return this.createTableRow(word, i+1)
-    })
+    });
+    if (this.props.userOptions.sortAZ) {
+      return list.sort((a, b) => a.props.name.localeCompare(b.props.name));
+    } else {
+      return list.sort((a, b) => a.key - b.key);
+    }
   }
   createTableRow(word, i) {
     return (

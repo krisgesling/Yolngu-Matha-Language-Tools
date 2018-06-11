@@ -111,6 +111,7 @@ class UserInput extends Component {
         <Definitions
           words={this.state.definitions}
           removeDefinition={this.removeDefinition}
+          userOptions={this.props.userOptions}
         />
       </div>
     );
