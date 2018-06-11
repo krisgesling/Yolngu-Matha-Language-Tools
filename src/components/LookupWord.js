@@ -9,7 +9,7 @@ function lookupWord(inputWord) {
       if (word.substr(0, cleanInput.length).toLowerCase() === cleanInput) {
         if (!multiWord && word.indexOf(' ')>0 && word!==cleanInput) { multiWord = true }
         return true
-      } else return regex.test(dictionary[word].En);
+      } else return regex.test(dictionary[word].En.toLowerCase());
     })
     : [];
 
