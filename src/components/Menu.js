@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Mailchimp from 'react-mailchimp-form';
 
 class Menu extends Component {
   constructor(props) {
@@ -48,6 +49,21 @@ class Menu extends Component {
           <div className="ham-bar3"></div>
         </div>
         <button className="btn-tour">Take a tour</button>
+        <span>Like what you see?</span>
+        <span>Want to hear about future releases and tools?</span>
+        <Mailchimp
+          action='https://gez.us18.list-manage.com/subscribe/post?u=324f4981c0e92001a286327ba&amp;id=57c91f5453'
+          className="mailchimp-subscribe"
+          fields={[
+            {
+              name: 'EMAIL',
+              placeholder: 'Email',
+              type: 'email',
+              required: true
+            }
+          ]}
+        />
+
         <section className={this.setItemClassName('about')}>
           <h3 onClick={this.toggleMenuItem}>About</h3>
           <p>Type in Yolŋu matha characters without a custom keyboard.</p>
@@ -83,25 +99,25 @@ class Menu extends Component {
         </section>
         <section className={this.setItemClassName('options')}>
           <h3 onClick={this.toggleMenuItem}>Options</h3>
-
-          <span className="label">Sort A-Z</span>
-          <label className="switch" >
-            <input
-              id="user-option-sortAZ"
-              type="checkbox"
-              checked={this.props.userOptions.sortAZ}
-              onChange={this.toggleOption}/>
-            <span className="slider round"></span>
-          </label>
+          <div className="switch-container">
+            <span className="label">Sort A-Z</span>
+            <label className="switch" >
+              <input
+                id="user-option-sortAZ"
+                type="checkbox"
+                checked={this.props.userOptions.sortAZ}
+                onChange={this.toggleOption}/>
+              <span className="slider round"></span>
+            </label>
+          </div>
         </section>
         <section className={this.setItemClassName('contact')}>
           <h3 onClick={this.toggleMenuItem}>Contact</h3>
-          <p>Random content></p>
-          <p>Random content></p>
-          <p>Random content></p>
-          <p>Random content></p>
-          <p>Random content></p>
-          <p>Random content></p>
+          <div className="profile-container">
+            <img src="https://media.licdn.com/dms/image/C4D03AQGAuOSxlkKDZw/profile-displayphoto-shrink_200_200/0?e=1534377600&v=beta&t=lgh3bV6R9Hc-Gda6ZCG6CovUSOR92R0bLWGbW4a95M0" alt="Kris Gesling" />
+            <p>Email me at <a href="mailto:hi@gez.bz">hi@gez.bz</a> or shout at me <a href="https://www.twitter.com/krisgesling" target="_blank" rel="noopener noreferrer">@krisgesling</a>.</p>
+            <p>Hi, I'm Kris. I've been making this tool for the last few months. Always interested to hear if you find it useful or to chat if you have ideas to make it better.</p>
+          </div>
         </section>
       </div>
     )
