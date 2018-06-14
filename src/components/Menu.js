@@ -95,7 +95,7 @@ class Menu extends Component {
               </tr>
             </tbody>
           </table>
-          <p>The full dictionary is not publicly available at this time.</p>
+          <p>The full dictionary is not publicly available at this time. Subscribe above for updates!</p>
         </section>
         <section className={this.setItemClassName('options')}>
           <h3 onClick={this.toggleMenuItem}>Options</h3>
@@ -115,8 +115,8 @@ class Menu extends Component {
           <h3 onClick={this.toggleMenuItem}>Contact</h3>
           <div className="profile-container">
             <img src="https://media.licdn.com/dms/image/C4D03AQGAuOSxlkKDZw/profile-displayphoto-shrink_200_200/0?e=1534377600&v=beta&t=lgh3bV6R9Hc-Gda6ZCG6CovUSOR92R0bLWGbW4a95M0" alt="Kris Gesling" />
+            <p>Hi, I'm Kris. I've been making this tool for the last few months to make my own life easier and I hope you find it helpful too. Always interested to hear if you find it useful or to chat if you have ideas to make it better.</p>
             <p>Email me at <a href="mailto:hi@gez.bz">hi@gez.bz</a> or shout at me <a href="https://www.twitter.com/krisgesling" target="_blank" rel="noopener noreferrer">@krisgesling</a>.</p>
-            <p>Hi, I'm Kris. I've been making this tool for the last few months. Always interested to hear if you find it useful or to chat if you have ideas to make it better.</p>
           </div>
         </section>
       </div>
