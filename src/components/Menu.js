@@ -7,7 +7,6 @@ class Menu extends Component {
     this.state = {
       'menuActive': '',
       'menuItemActive': ''
-      // TODO toggle each section to expand
     };
     this.toggleMenu = this.toggleMenu.bind(this);
     this.toggleMenuItem = this.toggleMenuItem.bind(this);
@@ -41,6 +40,7 @@ class Menu extends Component {
       : baseClass;
   }
   render() {
+
     return (
       <div className={`menu ${this.state.menuActive}`}>
         <div className={`btn-hamburger ${this.state.menuActive}`} onClick={this.toggleMenu} >
@@ -106,7 +106,8 @@ class Menu extends Component {
                 id="user-option-sortAZ"
                 type="checkbox"
                 checked={this.props.userOptions.sortAZ}
-                onChange={this.toggleOption}/>
+                onChange={this.toggleOption}
+              />
               <span className="slider round"></span>
             </label>
           </div>
@@ -114,9 +115,14 @@ class Menu extends Component {
         <section className={this.setItemClassName('contact')}>
           <h3 onClick={this.toggleMenuItem}>Contact</h3>
           <div className="profile-container">
-            <img src="https://media.licdn.com/dms/image/C4D03AQGAuOSxlkKDZw/profile-displayphoto-shrink_200_200/0?e=1534377600&v=beta&t=lgh3bV6R9Hc-Gda6ZCG6CovUSOR92R0bLWGbW4a95M0" alt="Kris Gesling" />
-            <p>Hi, I'm Kris. I've been making this tool for the last few months to make my own life easier and I hope you find it helpful too. Always interested to hear if you find it useful or to chat if you have ideas to make it better.</p>
-            <p>Email me at <a href="mailto:hi@gez.bz">hi@gez.bz</a> or shout at me <a href="https://www.twitter.com/krisgesling" target="_blank" rel="noopener noreferrer">@krisgesling</a>.</p>
+            <img className="profile-img" src={require('./assets/profile.jpeg')} alt="Kris Gesling" />
+            <p>{`Hi, I'm Kris. I've been making this tool to make my own life easier and I hope you find it helpful too. If you spot something that's not quite right, have ideas to make it better, or want to see another language included - please get in touch.`}</p>
+            <div className="social-btn-container">
+              <a href="mailto:hi@gez.bz"><img src={require('./assets/icon-email.svg')} alt="Email" /></a>
+              <a href="https://www.twitter.com/krisgesling" target="_blank" rel="noopener noreferrer"><img src={require('./assets/icon-twitter.svg')} alt="Twitter" /></a>
+              <a href="https://github.com/krisgesling/" target="_blank" rel="noopener noreferrer"><img src={require('./assets/icon-github.svg')} alt="GitHub" /></a>
+              <a href="https://www.linkedin.com/in/krisgesling/" target="_blank" rel="noopener noreferrer"><img src={require('./assets/icon-linkedin.svg')} alt="LinkedIn" /></a>
+            </div>
           </div>
         </section>
       </div>

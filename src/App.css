@@ -257,10 +257,14 @@ section.contact .profile-container {
   grid-gap: 0 20px;
   grid-template-columns: 150px auto;
 }
-.profile-container img {
+.profile-img {
   border-radius: 50%;
   grid-row: 1/3;
   width: 150px;
+}
+.social-btn-container img {
+  margin: 0 1em;
+  width: 2em;
 }
 /* END MENU CONFIG */
 /*** END MENU ***/
