@@ -4,6 +4,8 @@
 }
 h1 {
   font-size: 2em;
+  margin: 0 0 0.3em 0;
+  z-index: 95;
 }
 h2 {
   font-size: 1.6em;
@@ -18,23 +20,23 @@ a, a:visited {
   color: #61DAFB;
 }
 /***** END - BASE STYLES *****/
+.App {
+  display: grid;
+  grid-template-rows: 120px 1fr;
+}
 
 /***** HEADER *****/
+.App-header {
+  background-color: #222;
+  color: #fff;
+  display: grid;
+  justify-items: center;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 50px;
   margin-top: 10px;
   z-index: 90;
-}
-.App-header {
-  background-color: #222;
-  color: #fff;
-  height: 120px;
-  text-align: center;
-}
-.App-header h1 {
-  margin-top: 0;
-  z-index: 95;
 }
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
@@ -48,9 +50,8 @@ a, a:visited {
   color: #fff;
   display: grid;
   height: 0;
+  justify-items: center;
   overflow: hidden;
-  position: fixed;
-  top: 120px;
   transition: 0.5s;
   width: 100%;
   z-index: 80;
@@ -86,8 +87,7 @@ a, a:visited {
   font-weight: 700;
   padding: 5px 15px;
   text-align: center;
-  text-decoration: none;/*
-  text-transform: uppercase;*/
+  text-decoration: none;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
 }
@@ -100,19 +100,24 @@ a, a:visited {
   text-align: center;
 }
 .menu section {
-  margin: 10px 70px;
-  height: 1.6em;
+  display: grid;
+  grid-template-rows: auto 1fr;
   overflow-y: hidden;
   transition: height 1s;
 }
-.menu section.active {
+.menu section .accordian {
+  height: 0;
+  transition: height 1s;
+}
+.menu section.active .accordian {
   height: calc(100vh - 120px - 44px - 54px - 2 * (3em + 20px));
   overflow-y: scroll;
   transition: height 1s;
 }
 .menu h3 {
-  margin: auto;
   cursor: pointer;
+  margin: auto;
+  text-align: center;
 }
 .menu td {
   text-align: left;

@@ -23,16 +23,16 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <Menu
-            userOptions={this.state.userOptions}
-            updateState={this.updateState}
-          />
           <img
             src={logo}
             className="App-logo"
             alt="logo"
           />
           <h1>Yolŋu Matha</h1>
+          <Menu
+            userOptions={this.state.userOptions}
+            updateState={this.updateState}
+          />
         </div>
         <UserInput
           userOptions={this.state.userOptions}
