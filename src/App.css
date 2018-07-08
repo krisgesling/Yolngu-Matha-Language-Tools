@@ -261,13 +261,19 @@ section.contact .profile-container {
   display: grid;
   grid-gap: 0 20px;
   grid-template-columns: 150px auto;
+  grid-template-rows: auto 1fr;
 }
 .profile-img {
   border-radius: 50%;
   grid-row: 1/3;
   width: 150px;
 }
-.social-btn-container img {
+.social-btn-container {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: start;
+}
+.icon {
   margin: 0 1em;
   width: 2em;
 }
