@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Mailchimp from 'react-mailchimp-form';
+import Icon from './Icon.js';
 
 class Menu extends Component {
   constructor(props) {
@@ -121,10 +122,11 @@ class Menu extends Component {
             <img className="profile-img" src={require('./assets/profile.jpeg')} alt="Kris Gesling" />
             <p>{`Hi, I'm Kris. I've been making this tool to make my own life easier and I hope you find it helpful too. If you spot something that's not quite right, have ideas to make it better, or want to see another language included - please get in touch.`}</p>
             <div className="social-btn-container">
-              <a href="mailto:hi@gez.bz"><img src={require('./assets/icon-email.svg')} alt="Email" /></a>
-              <a href="https://www.twitter.com/krisgesling" target="_blank" rel="noopener noreferrer"><img src={require('./assets/icon-twitter.svg')} alt="Twitter" /></a>
-              <a href="https://github.com/krisgesling/" target="_blank" rel="noopener noreferrer"><img src={require('./assets/icon-github.svg')} alt="GitHub" /></a>
-              <a href="https://www.linkedin.com/in/krisgesling/" target="_blank" rel="noopener noreferrer"><img src={require('./assets/icon-linkedin.svg')} alt="LinkedIn" /></a>
+              <Icon type="email" />
+              <Icon type="twitter" />
+              <Icon type="github" />
+              <Icon type="linkedin" />
+              <Icon type="keybase" />
             </div>
           </div>
         </section>
