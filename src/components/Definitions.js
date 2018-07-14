@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Definitions extends Component {
   listDefinitions(words) {
     const list = Object.keys(words).map((word, i) => {
-      return this.createTableRow(word, i+1)
+      return this.newRow(word, i+1);
     });
     if (this.props.userOptions.sortAZ) {
       return list.sort((a, b) => a.props.name.localeCompare(b.props.name));
@@ -11,7 +11,7 @@ class Definitions extends Component {
       return list.sort((a, b) => a.key - b.key);
     }
   }
-  createTableRow(word, i) {
+  newRow(word, i) {
     return (
       <tr key={i} name={word}>
         <td>{word}</td>
