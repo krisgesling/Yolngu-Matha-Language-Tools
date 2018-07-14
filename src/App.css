@@ -327,6 +327,23 @@ th:nth-of-type(1) {
 .word-suggestions td {
   cursor: cell;
 }
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 5000ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 3000ms ease-in;
+}
 
 /* DEFINITIONS */
 table .btn.remove {
