@@ -100,6 +100,7 @@ class UserInput extends Component {
       <div className="user-input">
         <textarea
           autoFocus={true}
+          placeholder="You can type in Yolŋu Matha or English..."
           value={this.state.userInput}
           onChange={this.handleChange}
           ref="input"
