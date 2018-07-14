@@ -302,7 +302,7 @@ section.contact .profile-container {
 }
 @media (max-width:800px) {
   .user-input textarea {
-    height: 2em;
+    height: 2.6em;
     margin: 0.6em 0;
   }
   .user-input h3 {
