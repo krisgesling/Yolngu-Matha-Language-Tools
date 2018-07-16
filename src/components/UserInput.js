@@ -15,6 +15,7 @@ class UserInput extends Component {
       'definitions': {}
     };
     this.handleChange = this.handleChange.bind(this);
+    this.addDefinition = this.addDefinition.bind(this);
     this.removeDefinition = this.removeDefinition.bind(this);
     this.selectedSuggestion = this.selectedSuggestion.bind(this);
     this.yolnguKeyboard = this.yolnguKeyboard.bind(this);
@@ -72,16 +73,36 @@ class UserInput extends Component {
     });
     if (inputLookup.definition) {
       // TODO return definition as object already
-      let newObj = {};
-      newObj[inputLookup.word] = inputLookup.definition;
-      const newDefs = {
-        ...this.state.definitions,
-        ...newObj
-      };
-      this.setState(prevState => ({
-        'definitions': newDefs
-      }));
+      let newDef = {};
+      newDef[inputLookup.word] = inputLookup.definition;
     }
+  }
+  addDefinition(value) {
+    if (!value) {
+      return console.error('No value provided to addDefinition');
+    }
+    let definition = {};
+    if (
+      typeof value === 'object'
+      && value.constructor === Object
+      && value.word === String
+      && value.definition === String
+      ) {
+      definition[value.word] = value.definition;
+    } else {
+      console.log('word: ', value);
+      const newDef = lookupWord(value);
+      definition[newDef.word] = newDef.definition;
+      console.log('definition: ', definition);
+    }
+    const newDefs = {
+      ...this.state.definitions,
+      ...definition
+    };
+
+    this.setState(prevState => ({
+      'definitions': newDefs
+    }));
   }
   removeDefinition(word) {
     let newDefs = this.state.definitions;
@@ -107,6 +128,7 @@ class UserInput extends Component {
         />
         <WordSuggestions
           words={this.state.suggestions}
+          addDefinition={this.addDefinition}
           onSelectSuggestion={this.selectedSuggestion}
         />
         <Definitions

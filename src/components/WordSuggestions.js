@@ -5,12 +5,20 @@ class WordSuggestions extends Component {
   selectSuggestion(word) {
     this.props.onSelectSuggestion(word)
   }
+  addDefinition(definition) {
+    this.props.addDefinition(definition)
+  }
   render() {
     const suggestions = Object.keys(this.props.words).map((word, i) => {
       return (
         <tr key={i+1} onClick={() => this.selectSuggestion(word)}>
           <td>{word}</td>
           <td>{this.props.words[word]}</td>
+          <td>
+            <button className="btn add" onClick={() => this.addDefinition(word)}>
+              +
+            </button>
+          </td>
         </tr>
       )
     });
