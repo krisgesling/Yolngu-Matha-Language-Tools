@@ -1,3 +1,7 @@
+:root {
+  --rgb-green: 0, 230, 0;
+  --rgb-red: 230, 46, 0;
+}
 /***** BASE STYLES *****/
 .App {
   font-size: 18px;
@@ -324,9 +328,6 @@ td {
 th:nth-of-type(1) {
   padding-right: 3em;
 }
-.word-suggestions td {
-  cursor: cell;
-}
 .example-appear {
   opacity: 0.01;
 }
@@ -345,23 +346,45 @@ th:nth-of-type(1) {
   transition: opacity 3000ms ease-in;
 }
 
-/* DEFINITIONS */
-table .btn.remove {
+/* BUTTONS */
+.btn {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+.btn {
   background-color: white;
   border: solid 1px;
-  border-color: red;
   border-radius: 50%;
-  color: red;
   font-weight: 700;
 }
-table .btn.remove:hover {
+.btn.add {
+  border-color: rgba(var(--rgb-green), 1);
+  color: rgba(var(--rgb-green), 1);
+}
+.btn.add:hover {
+  background-color: white;
+  background-color: rgba(var(--rgb-green),0.1);
+}
+.btn.add:focus {
+  background-color: rgba(var(--rgb-green), 1);
+  color: white;
+}
+.btn.remove {
+  border-color: rgba(var(--rgb-red), 1);
+  color: rgba(var(--rgb-red), 1);
+  transform: rotate(45deg);
+}
+.btn.remove:hover {
   background-color: white;
   background-color: rgba(255,0,0,0.1);
 }
-table .btn.remove:focus {
-  background-color: rgb(255,0,0);
-  background-color: rgba(255,0,0,1);
-  color: rgb(255,255,255)
+.btn.remove:focus {
+  background-color: rgba(var(--rgb-red), 1);
+  color: white;
 }
-/* END DEFINITIONS */
+/* END BUTTONS */
 /***** END USER INPUT *****/

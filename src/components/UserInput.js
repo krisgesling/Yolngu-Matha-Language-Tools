@@ -17,7 +17,6 @@ class UserInput extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.addDefinition = this.addDefinition.bind(this);
     this.removeDefinition = this.removeDefinition.bind(this);
-    this.selectedSuggestion = this.selectedSuggestion.bind(this);
     this.yolnguKeyboard = this.yolnguKeyboard.bind(this);
   }
   componentDidUpdate({value}) {
@@ -88,12 +87,10 @@ class UserInput extends Component {
       && value.word === String
       && value.definition === String
       ) {
-      definition[value.word] = value.definition;
+        definition[value.word] = value.definition;
     } else {
-      console.log('word: ', value);
       const newDef = lookupWord(value);
       definition[newDef.word] = newDef.definition;
-      console.log('definition: ', definition);
     }
     const newDefs = {
       ...this.state.definitions,
@@ -110,10 +107,6 @@ class UserInput extends Component {
     this.setState(prevState => ({
       'definitions': newDefs
     }));
-  }
-  selectedSuggestion(word) {
-    const mockEvent = {'target': {'value': word}};
-    this.handleChange(mockEvent);
   }
 
   render() {

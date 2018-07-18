@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Icon from './Icon.js';
 
 class Definitions extends Component {
   newRow(word, i) {
@@ -8,7 +9,7 @@ class Definitions extends Component {
         <td>{this.props.words[word]}</td>
         <td>
           <button className="btn remove" onClick={() => this.removeWord(word)}>
-            -
+            +
           </button>
         </td>
       </tr>

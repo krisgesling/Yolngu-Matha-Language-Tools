@@ -7,15 +7,15 @@ function lookupWord(inputWord) {
   const suggestionList = cleanInput.length > 0
     ? Object.keys(dictionary).filter((word, i) => {
       if (word.substr(0, cleanInput.length).toLowerCase() === cleanInput) {
-        if (!multiWord && word.indexOf(' ')>0 && word!==cleanInput) { multiWord = true }
+        // if (!multiWord && word.indexOf(' ')>0 && word!==cleanInput) { multiWord = true }
         return true
       } else return regex.test(dictionary[word].En.toLowerCase());
     })
     : [];
 
   let suggestions = {};
-  if (suggestionList.length !== 1 &&
-    suggestionList[0] !== cleanInput) {
+  if (suggestionList.length > 0) {
+    // && suggestionList[0] !== cleanInput)
     suggestionList.slice(0,8).forEach((word) => {
       suggestions[word] = dictionary[word].En;
     })
