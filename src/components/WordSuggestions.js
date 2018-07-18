@@ -21,7 +21,7 @@ class WordSuggestions extends Component {
     });
     return (
       <div className="word-suggestions">
-        <h3>Did you mean...</h3>
+        <h3>Results</h3>
         <table>
           <thead>
             <tr>

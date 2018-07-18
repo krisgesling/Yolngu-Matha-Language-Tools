@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Icon from './Icon.js';
 
 class Definitions extends Component {
   newRow(word, i) {

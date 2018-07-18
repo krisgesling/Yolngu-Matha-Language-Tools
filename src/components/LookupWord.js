@@ -16,7 +16,7 @@ function lookupWord(inputWord) {
   let suggestions = {};
   if (suggestionList.length > 0) {
     // && suggestionList[0] !== cleanInput)
-    suggestionList.slice(0,8).forEach((word) => {
+    suggestionList.slice(0,16).forEach((word) => {
       suggestions[word] = dictionary[word].En;
     })
   }
