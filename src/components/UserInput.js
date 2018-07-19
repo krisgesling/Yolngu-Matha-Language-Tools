@@ -128,6 +128,7 @@ class UserInput extends Component {
           words={this.state.definitions}
           removeDefinition={this.removeDefinition}
           userOptions={this.props.userOptions}
+          updateState={this.props.updateState}
         />
       </div>
     );
