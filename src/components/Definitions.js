@@ -40,17 +40,19 @@ class Definitions extends Component {
             onClick={() => this.toggleSort(isSorted)}
           >▼</button>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Yolŋu Matha</th>
-              <th>English</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedList}
-          </tbody>
-        </table>
+        {sortedList.length > 0 &&
+          <table>
+            <thead>
+              <tr>
+                <th>Yolŋu Matha</th>
+                <th>English</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedList}
+            </tbody>
+          </table>
+        }
       </div>
     );
   }

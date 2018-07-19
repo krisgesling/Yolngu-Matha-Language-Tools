@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CSSTransitionGroup } from 'react-transition-group'
+// import { CSSTransitionGroup } from 'react-transition-group'
 
 class WordSuggestions extends Component {
   addDefinition(definition) {
@@ -22,17 +22,19 @@ class WordSuggestions extends Component {
     return (
       <div className="word-suggestions">
         <h3>Results</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Yolŋu Matha</th>
-              <th>English</th>
-            </tr>
-          </thead>
-          <tbody>
-            {suggestions}
-          </tbody>
-        </table>
+        {suggestions.length > 0 &&
+          <table>
+            <thead>
+              <tr>
+                <th>Yolŋu Matha</th>
+                <th>English</th>
+              </tr>
+            </thead>
+            <tbody>
+              {suggestions}
+            </tbody>
+          </table>
+        }
       </div>
     );
   }
