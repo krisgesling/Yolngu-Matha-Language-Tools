@@ -23,16 +23,11 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img
-            src={logo}
-            className="App-logo"
-            alt="logo"
-          />
-          <h1>Yolŋu Matha</h1>
           <Menu
             userOptions={this.state.userOptions}
             updateState={this.updateState}
           />
+          <h1>Yolŋu Matha Dictionary</h1>
         </div>
         <UserInput
           userOptions={this.state.userOptions}

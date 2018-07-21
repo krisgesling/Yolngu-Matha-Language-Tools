@@ -33,13 +33,15 @@ class Definitions extends Component {
     return (
       <div className="definitions">
         <h3>My Definitions</h3>
-        <div>
-          <button
-            title='Sort A-Z'
-            className={`btn minimenu ${isSorted ? 'sorted' : ''}`}
-            onClick={() => this.toggleSort(isSorted)}
-          >▼</button>
-        </div>
+        {sortedList.length > 0 &&
+          <div>
+            <button
+              title='Sort A-Z'
+              className={`btn minimenu ${isSorted ? 'sorted' : ''}`}
+              onClick={() => this.toggleSort(isSorted)}
+            >▼</button>
+          </div>
+        }
         {sortedList.length > 0 &&
           <table>
             <thead>
