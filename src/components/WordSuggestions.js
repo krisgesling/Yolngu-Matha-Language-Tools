@@ -23,6 +23,11 @@ class WordSuggestions extends Component {
       <div className="word-suggestions">
         <h3>Results</h3>
         {suggestions.length > 0 &&
+          <span className="meta">
+            Showing {suggestions.length} of {this.props.totalSuggestions}
+          </span>
+        }
+        {suggestions.length > 0 &&
           <table>
             <thead>
               <tr>

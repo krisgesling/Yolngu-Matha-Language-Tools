@@ -21,6 +21,11 @@ p {
 a, a:visited {
   color: #61DAFB;
 }
+.meta {
+  font-size: 0.8em;
+  color: #555;
+  float: left;
+}
 /***** END - BASE STYLES *****/
 .App {
   display: grid;

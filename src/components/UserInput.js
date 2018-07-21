@@ -9,6 +9,7 @@ class UserInput extends Component {
     this.state = {
       'userInput': '',
       'suggestions': {},
+      'totalSuggestions': 0,
       'modKey': false,
       'multiWord': false,
       'caretPos': 0,
@@ -18,6 +19,9 @@ class UserInput extends Component {
     this.addDefinition = this.addDefinition.bind(this);
     this.removeDefinition = this.removeDefinition.bind(this);
     this.yolnguKeyboard = this.yolnguKeyboard.bind(this);
+  }
+  componentDidMount(){
+    this.refs.input.focus()
   }
   componentDidUpdate({value}) {
     if (this.state.userInput !== value) {
@@ -67,6 +71,7 @@ class UserInput extends Component {
     this.setState({
       'userInput': yolnguVal.newValue,
       'suggestions': inputLookup.suggestions,
+      'totalSuggestions': inputLookup.totalSuggestions,
       'multiWord': inputLookup.multiWord,
       'caretPos': Number(caretPos)
     });
@@ -100,6 +105,7 @@ class UserInput extends Component {
     this.setState(prevState => ({
       'definitions': newDefs
     }));
+    this.refs.input.focus()
   }
   removeDefinition(word) {
     let newDefs = this.state.definitions;
@@ -107,13 +113,13 @@ class UserInput extends Component {
     this.setState(prevState => ({
       'definitions': newDefs
     }));
+    this.refs.input.focus()
   }
 
   render() {
     return (
       <div className="user-input">
         <textarea
-          autoFocus={true}
           placeholder="You can type in Yolŋu Matha or English..."
           value={this.state.userInput}
           onChange={this.handleChange}
@@ -121,6 +127,7 @@ class UserInput extends Component {
         />
         <WordSuggestions
           words={this.state.suggestions}
+          totalSuggestions={this.state.totalSuggestions}
           addDefinition={this.addDefinition}
           onSelectSuggestion={this.selectedSuggestion}
         />

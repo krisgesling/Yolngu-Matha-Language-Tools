@@ -34,6 +34,11 @@ class Definitions extends Component {
       <div className="definitions">
         <h3>My Definitions</h3>
         {sortedList.length > 0 &&
+          <span className="meta">
+            You have {sortedList.length} definitions.
+          </span>
+        }
+        {sortedList.length > 0 &&
           <div>
             <button
               title='Sort A-Z'

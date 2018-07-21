@@ -2,7 +2,7 @@ import dictionary from '../data/dictionary.js'
 
 function lookupWord(inputWord) {
   const cleanInput = inputWord.toLowerCase();
-  let multiWord = false;
+  // let multiWord = false;
   const regex = new RegExp(`.*${cleanInput}.*`);
   const suggestionList = cleanInput.length > 0
     ? Object.keys(dictionary).filter((word, i) => {
@@ -15,7 +15,6 @@ function lookupWord(inputWord) {
 
   let suggestions = {};
   if (suggestionList.length > 0) {
-    // && suggestionList[0] !== cleanInput)
     suggestionList.slice(0,16).forEach((word) => {
       suggestions[word] = dictionary[word].En;
     })
@@ -30,7 +29,8 @@ function lookupWord(inputWord) {
    'word': lexeme,
    'definition': definition,
    'suggestions': suggestions,
-   'multiWord': multiWord
+   'totalSuggestions': suggestionList.length
+   // 'multiWord': multiWord
  };
 }
 
