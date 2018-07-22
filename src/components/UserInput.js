@@ -73,7 +73,7 @@ class UserInput extends Component {
   }
   toggleOption(e) {
     const key = e.target.id.slice(12);
-    let newObj = {'userOptions': {}}
+    let newObj = this.props;
     newObj.userOptions[key] = this.props.userOptions[key] ? false : true;
     this.props.updateState(newObj);
     if (key === 'isFlexiSearch') this.handleInputChange();

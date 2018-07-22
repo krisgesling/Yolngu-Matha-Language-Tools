@@ -18,8 +18,9 @@ class Definitions extends Component {
     this.props.removeDefinition(word)
   }
   toggleSort(prevState) {
-    let newObj = {'userOptions': {}}
-    newObj.userOptions.sortAZ = prevState ? false : true;
+    const key = 'sortAZ';
+    let newObj = this.props;
+    newObj.userOptions[key] = this.props.userOptions[key] ? false : true;
     this.props.updateState(newObj);
   }
   render() {
