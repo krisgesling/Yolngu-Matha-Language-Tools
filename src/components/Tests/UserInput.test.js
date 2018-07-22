@@ -7,7 +7,11 @@ import UserInput from '../UserInput';
 configure({ adapter: new Adapter() })
 
 describe('Yolngu keyboard modifications', () => {
-  const an = mount(<UserInput/>);
+  const an = mount(
+    <UserInput
+      userOptions={{'sortAZ': false}}
+    />
+  );
   it('Returns input for standard letters', () => {
     expect(an.instance().yolnguKeyboard({
       'prevValue': 'a',
