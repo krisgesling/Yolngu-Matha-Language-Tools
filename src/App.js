@@ -15,17 +15,16 @@ class App extends Component {
         'isFlexiSearch': false,
         'sortAZ': false
       },
-      'userInput': '',
       'suggestions': {},
       'totalSuggestions': 0,
-      'modKey': false,
-      'multiWord': false,
-      'caretPos': 0,
       'definitions': {}
     };
     this.updateState = this.updateState.bind(this);
     this.addDefinition = this.addDefinition.bind(this);
     this.removeDefinition = this.removeDefinition.bind(this);
+  }
+  componentDidMount(){
+    this.refs.userInput.refs.input.focus()
   }
   updateState(newObj) {
     this.setState(prevState => ({

@@ -4,18 +4,20 @@ import lookupWord from '../functions/LookupWord';
 class UserInput extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      'userInput': '',
+      'modKey': false,
+      'multiWord': false,
+      'caretPos': 0
+    }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.toggleOption = this.toggleOption.bind(this);
     this.yolnguKeyboard = this.yolnguKeyboard.bind(this);
   }
-  componentDidMount(){
-    this.refs.input.focus()
-  }
   componentDidUpdate({value}) {
-    if (this.props.userInput !== value) {
-      const str = this.props.userInput.substr(0, this.props.caretPos);
-      const index = String(this.props.userInput).indexOf(str) + this.props.caretPos;
-
+    if (this.state.userInput !== value) {
+      const str = this.state.userInput.substr(0, this.state.caretPos);
+      const index = String(this.state.userInput).indexOf(str) + this.state.caretPos;
       if (index !== -1) {
         this.refs.input.selectionStart = this.refs.input.selectionEnd = index;
       }
@@ -31,13 +33,13 @@ class UserInput extends Component {
       newValue = newInput.split('');
       newValue.some((char, i, arr) => {
         if (char !== prevValue.charAt(i)) {
-          if (arr[i-1] === ';' && this.props.modKey && keyMap[char]) {
+          if (arr[i-1] === ';' && this.state.modKey && keyMap[char]) {
             newValue.splice((i-1), 2, keyMap[char])
             modified = true
           };
           char === ';'
-            ? this.props.updateState({ 'modKey': true})
-            : this.props.updateState({'modKey': false});
+            ? this.setState({ 'modKey': true})
+            : this.setState({'modKey': false});
           return true
         } else return false
       })
@@ -49,7 +51,7 @@ class UserInput extends Component {
   }
   handleInputChange(e = {'target': this.refs.input}) {
     const yolnguVal = this.yolnguKeyboard({
-      'prevValue': this.props.userInput,
+      'prevValue': this.state.userInput,
       'newInput': e.target.value
     });
     const inputLookup = lookupWord({
@@ -59,18 +61,15 @@ class UserInput extends Component {
     const caretPos = yolnguVal.modified
       ? e.target.selectionEnd-1
       : e.target.selectionEnd;
-    this.props.updateState({
+    this.setState({
       'userInput': yolnguVal.newValue,
-      'suggestions': inputLookup.suggestions,
-      'totalSuggestions': inputLookup.totalSuggestions,
       'multiWord': inputLookup.multiWord,
       'caretPos': Number(caretPos)
+    })
+    this.props.updateState({
+      'suggestions': inputLookup.suggestions,
+      'totalSuggestions': inputLookup.totalSuggestions
     });
-    if (inputLookup.definition) {
-      // TODO return definition as object already
-      let newDef = {};
-      newDef[inputLookup.word] = inputLookup.definition;
-    }
   }
   toggleOption(e) {
     const key = e.target.id.slice(12);
@@ -84,7 +83,7 @@ class UserInput extends Component {
       <div className="user-input">
         <textarea
           placeholder="You can type in Yolŋu Matha or English..."
-          value={this.props.userInput}
+          value={this.state.userInput}
           onChange={this.handleInputChange}
           ref="input"
         />
