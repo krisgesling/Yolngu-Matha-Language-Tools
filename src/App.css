@@ -36,10 +36,9 @@ a, a:visited {
   grid-column-gap: 20px;
   justify-items: center;
 }
-@media (max-width: 600px) {
+@media (max-width: 750px) {
   .App {
     grid-template-columns: 1fr;
-
   }
   .word-suggestions, .definitions {
     grid-column: 1 / -1;
@@ -338,13 +337,12 @@ section.contact .profile-container {
 div.user-input {
   display: grid;
   grid-column: 1 / -1;
+  max-width: 500px;
 }
 .user-input textarea {
   grid-column: 1 / -1;
   justify-self: center;
-  /* width: calc(100vw - 30px); */
   width: 100%;
-  max-width: 500px;
   height: 1.4em;
   margin: 0;
   border: 1px solid black;
@@ -366,15 +364,35 @@ div.user-input {
   display: grid;
   align-items: start;
   align-content: start;
-  /* justify-items: start; */
   grid-template-columns: 1fr auto auto;
-  margin: 0 15px;
-  max-width: 600px;
+  width: 550px;
   text-align: left;
+}
+.word-suggestions {
+  justify-self: end;
+}
+.definitions {
+  justify-self: start;
 }
 .word-list h3 {
   grid-column: 1 / -1;
   margin: 0.6em 0 0 0;
+}
+@media (max-width:500px) {
+  .word-list h3 {
+    font-size: 1.3em;
+  }
+}
+@media (max-width:1200px) {
+  .word-list {
+    width: 100%;
+  }
+  /* .word-list > * {
+    margin: 0 15px;
+  }
+  .word-list h3 {
+    margin: 0.6em 15px 0 15px;
+  } */
 }
 .word-list .meta {
   grid-column: 1 / -2;
@@ -384,11 +402,6 @@ div.user-input {
 }
 .word-list table {
   grid-column: 1 / -1;
-}
-@media (max-width:500px) {
-  .word-list h3 {
-    font-size: 1.3em;
-  }
 }
 table {
   max-width: 100vw;

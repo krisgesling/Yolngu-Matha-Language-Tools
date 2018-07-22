@@ -8,6 +8,14 @@ function createRegex({cleanInput, isFlexiSearch}) {
         case 'ä':
           returnStr = '[aä]'
           break;
+        case 'i':
+        case 'e':
+          returnStr = '[ie]'
+          break;
+        case 'u':
+        case 'o':
+          returnStr = '[uo]'
+          break;
         case 'b':
         case 'p':
           returnStr = '[bp]'
