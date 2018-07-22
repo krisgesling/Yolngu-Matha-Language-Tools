@@ -31,7 +31,7 @@ class Definitions extends Component {
       ? list.sort((a, b) => a.props.name.localeCompare(b.props.name))
       : list.sort((a, b) => a.key - b.key);
     return (
-      <div className="definitions">
+      <div className="word-list definitions">
         <h3>My Definitions</h3>
         {sortedList.length > 0 &&
           <span className="meta">
@@ -39,13 +39,11 @@ class Definitions extends Component {
           </span>
         }
         {sortedList.length > 0 &&
-          <div>
-            <button
-              title='Sort A-Z'
-              className={`btn minimenu ${isSorted ? 'sorted' : ''}`}
-              onClick={() => this.toggleSort(isSorted)}
-            >▼</button>
-          </div>
+          <button
+            title='Sort A-Z'
+            className={`btn minimenu ${isSorted ? 'sorted' : ''}`}
+            onClick={() => this.toggleSort(isSorted)}
+          >▼</button>
         }
         {sortedList.length > 0 &&
           <table>

@@ -1,32 +1,20 @@
 import React, { Component } from 'react';
-import lookupWord from './LookupWord';
-import WordSuggestions from './WordSuggestions';
-import Definitions from './Definitions';
+import lookupWord from '../functions/LookupWord';
 
 class UserInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      'userInput': '',
-      'suggestions': {},
-      'totalSuggestions': 0,
-      'modKey': false,
-      'multiWord': false,
-      'caretPos': 0,
-      'definitions': {}
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.addDefinition = this.addDefinition.bind(this);
-    this.removeDefinition = this.removeDefinition.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.toggleOption = this.toggleOption.bind(this);
     this.yolnguKeyboard = this.yolnguKeyboard.bind(this);
   }
   componentDidMount(){
     this.refs.input.focus()
   }
   componentDidUpdate({value}) {
-    if (this.state.userInput !== value) {
-      const str = this.state.userInput.substr(0, this.state.caretPos);
-      const index = String(this.state.userInput).indexOf(str) + this.state.caretPos;
+    if (this.props.userInput !== value) {
+      const str = this.props.userInput.substr(0, this.props.caretPos);
+      const index = String(this.props.userInput).indexOf(str) + this.props.caretPos;
 
       if (index !== -1) {
         this.refs.input.selectionStart = this.refs.input.selectionEnd = index;
@@ -43,13 +31,13 @@ class UserInput extends Component {
       newValue = newInput.split('');
       newValue.some((char, i, arr) => {
         if (char !== prevValue.charAt(i)) {
-          if (arr[i-1] === ';' && this.state.modKey && keyMap[char]) {
+          if (arr[i-1] === ';' && this.props.modKey && keyMap[char]) {
             newValue.splice((i-1), 2, keyMap[char])
             modified = true
           };
           char === ';'
-            ? this.setState({ 'modKey': true})
-            : this.setState({'modKey': false});
+            ? this.props.updateState({ 'modKey': true})
+            : this.props.updateState({'modKey': false});
           return true
         } else return false
       })
@@ -59,16 +47,19 @@ class UserInput extends Component {
       'modified': modified ? modified : false
     };
   }
-  handleChange(e) {
+  handleInputChange(e = {'target': this.refs.input}) {
     const yolnguVal = this.yolnguKeyboard({
-      'prevValue': this.state.userInput,
+      'prevValue': this.props.userInput,
       'newInput': e.target.value
     });
-    const inputLookup = lookupWord(yolnguVal.newValue);
+    const inputLookup = lookupWord({
+      'inputWord': yolnguVal.newValue,
+      'isFlexiSearch': this.props.userOptions.isFlexiSearch
+    });
     const caretPos = yolnguVal.modified
       ? e.target.selectionEnd-1
       : e.target.selectionEnd;
-    this.setState({
+    this.props.updateState({
       'userInput': yolnguVal.newValue,
       'suggestions': inputLookup.suggestions,
       'totalSuggestions': inputLookup.totalSuggestions,
@@ -81,62 +72,35 @@ class UserInput extends Component {
       newDef[inputLookup.word] = inputLookup.definition;
     }
   }
-  addDefinition(value) {
-    if (!value) {
-      return console.error('No value provided to addDefinition');
-    }
-    let definition = {};
-    if (
-      typeof value === 'object'
-      && value.constructor === Object
-      && value.word === String
-      && value.definition === String
-      ) {
-        definition[value.word] = value.definition;
-    } else {
-      const newDef = lookupWord(value);
-      definition[newDef.word] = newDef.definition;
-    }
-    const newDefs = {
-      ...this.state.definitions,
-      ...definition
-    };
-
-    this.setState(prevState => ({
-      'definitions': newDefs
-    }));
-    this.refs.input.focus()
+  toggleOption(e) {
+    const key = e.target.id.slice(12);
+    let newObj = {'userOptions': {}}
+    newObj.userOptions[key] = this.props.userOptions[key] ? false : true;
+    this.props.updateState(newObj);
+    if (key === 'isFlexiSearch') this.handleInputChange();
   }
-  removeDefinition(word) {
-    let newDefs = this.state.definitions;
-    delete newDefs[word];
-    this.setState(prevState => ({
-      'definitions': newDefs
-    }));
-    this.refs.input.focus()
-  }
-
   render() {
     return (
       <div className="user-input">
         <textarea
           placeholder="You can type in Yolŋu Matha or English..."
-          value={this.state.userInput}
-          onChange={this.handleChange}
+          value={this.props.userInput}
+          onChange={this.handleInputChange}
           ref="input"
         />
-        <WordSuggestions
-          words={this.state.suggestions}
-          totalSuggestions={this.state.totalSuggestions}
-          addDefinition={this.addDefinition}
-          onSelectSuggestion={this.selectedSuggestion}
-        />
-        <Definitions
-          words={this.state.definitions}
-          removeDefinition={this.removeDefinition}
-          userOptions={this.props.userOptions}
-          updateState={this.props.updateState}
-        />
+        <div className="switch-container">
+          <span className="label">FlexiSearch</span>
+          <label className="switch" >
+            <input
+              id="user-option-isFlexiSearch"
+              type="checkbox"
+              checked={this.props.userOptions.isFlexiSearch}
+              onChange={this.toggleOption}
+            />
+            <span className="slider round"></span>
+          </label>
+        </div>
+
       </div>
     );
   }

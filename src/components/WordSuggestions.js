@@ -20,7 +20,7 @@ class WordSuggestions extends Component {
       )
     });
     return (
-      <div className="word-suggestions">
+      <div className="word-list word-suggestions">
         <h3>Results</h3>
         {suggestions.length > 0 &&
           <span className="meta">
