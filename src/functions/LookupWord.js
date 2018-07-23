@@ -8,16 +8,10 @@ function lookupWord({inputWord, isFlexiSearch}) {
     'isFlexiSearch': isFlexiSearch
   });
 
-  // let multiWord = false;
-
   const suggestionList = cleanInput.length > 0
     ? Object.keys(dictionary).filter((word, i) => {
       return regex.test(word.toLowerCase())
         || regex.test(dictionary[word].En.toLowerCase());
-      // if (word.substr(0, cleanInput.length).toLowerCase() === cleanInput) {
-      //   // if (!multiWord && word.indexOf(' ')>0 && word!==cleanInput) { multiWord = true }
-      //   return true
-      // } else return regex.test(dictionary[word].En.toLowerCase());
     })
     : [];
 
@@ -38,7 +32,6 @@ function lookupWord({inputWord, isFlexiSearch}) {
    'definition': definition,
    'suggestions': suggestions,
    'totalSuggestions': suggestionList.length
-   // 'multiWord': multiWord
  };
 }
 

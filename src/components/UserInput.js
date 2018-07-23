@@ -7,7 +7,6 @@ class UserInput extends Component {
     this.state = {
       'userInput': '',
       'modKey': false,
-      'multiWord': false,
       'caretPos': 0
     }
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -63,7 +62,6 @@ class UserInput extends Component {
       : e.target.selectionEnd;
     this.setState({
       'userInput': yolnguVal.newValue,
-      'multiWord': inputLookup.multiWord,
       'caretPos': Number(caretPos)
     })
     this.props.updateState({
