@@ -105,7 +105,6 @@ a, a:visited {
 .menu.active {
   height: 100vh;
   transition: 0.5s;
-  /* top: 80px; */
 }
 .btn-tour {
   background-color: #fff;
@@ -187,7 +186,6 @@ a, a:visited {
     transition: margin 1s;
   }
   .menu.active section {
-    /* margin: 10px 10px; */
     transition: margin 1s;
   }
   .menu.active .btn-tour {
@@ -387,12 +385,6 @@ div.user-input {
   .word-list {
     width: 100%;
   }
-  /* .word-list > * {
-    margin: 0 15px;
-  }
-  .word-list h3 {
-    margin: 0.6em 15px 0 15px;
-  } */
 }
 .word-list .meta {
   grid-column: 1 / -2;
