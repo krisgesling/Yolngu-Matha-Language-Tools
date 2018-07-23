@@ -1,31 +1,49 @@
 import dictionary from '../data/dictionary.js'
 import createRegex from './CreateRegex.js'
 
+// TODO Split word search from word lookup
 function lookupWord({inputWord, isFlexiSearch}) {
-  const cleanInput = inputWord.toLowerCase();
   const regex = createRegex({
-    'cleanInput': cleanInput,
+    'cleanInput': inputWord.toLowerCase(),
     'isFlexiSearch': isFlexiSearch
   });
 
-  const suggestionList = cleanInput.length > 0
-    ? Object.keys(dictionary).filter((word, i) => {
-      return regex.test(word.toLowerCase())
-        || regex.test(dictionary[word].En.toLowerCase());
+  const suggestionList = inputWord.length > 0
+    ? Object.keys(dictionary)
+      .filter(word => {
+        return regex.test(word)
+          || regex.test(dictionary[word].En);
+      }).map((word, i) => {
+      if (regex.test(word)) {
+        return {
+          'word': word,
+          'weight': regex.exec(word).index / word.length / -1
+        }
+      } else if (regex.test(dictionary[word].En)) {
+        return {
+          'word': word,
+          'weight': regex.exec(dictionary[word].En).index / dictionary[word].En.length / -1
+        }
+      } else return {
+        'word': word,
+        'weight': 0
+      }
     })
     : [];
-
+  suggestionList.sort((a,b) => {
+    return b.weight - a.weight;
+  });
   let suggestions = {};
   if (suggestionList.length > 0) {
-    suggestionList.slice(0,16).forEach((word) => {
-      suggestions[word] = dictionary[word].En;
+    suggestionList.slice(0,16).forEach((suggestion) => {
+      suggestions[suggestion.word] = dictionary[suggestion.word].En;
     })
   }
-  const definition = (dictionary[cleanInput])
-    ? dictionary[cleanInput].En
+  const definition = (dictionary[inputWord])
+    ? dictionary[inputWord].En
     : ''
-  const lexeme = (dictionary[cleanInput])
-    ? cleanInput
+  const lexeme = (dictionary[inputWord])
+    ? inputWord
     : ''
  return {
    'word': lexeme,
