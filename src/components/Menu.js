@@ -65,7 +65,7 @@ class Menu extends Component {
         />
 
         <section className={this.setItemClassName('about')}>
-          <h3 onClick={this.toggleMenuItem}>About</h3>
+          <h2 onClick={this.toggleMenuItem}>About</h2>
           <div className="accordian">
             <p>Type in Yolŋu matha characters without a custom keyboard.</p>
             <p>Just type ';' then the corresponding key.</p>
@@ -99,25 +99,8 @@ class Menu extends Component {
             <p>The full dictionary is not publicly available at this time. Subscribe above for updates!</p>
           </div>
         </section>
-        <section className={this.setItemClassName('options')}>
-          <h3 onClick={this.toggleMenuItem}>Options</h3>
-          <div className="accordian">
-            <div className="switch-container">
-              <span className="label">Sort A-Z</span>
-              <label className="switch" >
-                <input
-                  id="user-option-sortAZ"
-                  type="checkbox"
-                  checked={this.props.userOptions.sortAZ}
-                  onChange={this.toggleOption}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-          </div>
-        </section>
         <section className={this.setItemClassName('contact')}>
-          <h3 onClick={this.toggleMenuItem}>Contact</h3>
+          <h2 onClick={this.toggleMenuItem}>Contact</h2>
           <div className="accordian profile-container">
             <img className="profile-img" src={require('./assets/profile.jpeg')} alt="Kris Gesling" />
             <p>{`Hi, I'm Kris. I've been making this tool to make my own life easier and I hope you find it helpful too. If you spot something that's not quite right, have ideas to make it better, or want to see another language included - please get in touch.`}</p>

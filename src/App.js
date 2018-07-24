@@ -12,6 +12,8 @@ class App extends Component {
     super(props);
     this.state = {
       'userOptions': {
+        'searchYolngu': true,
+        'searchEnglish': true,
         'isFlexiSearch': false,
         'sortAZ': false
       },
@@ -44,7 +46,8 @@ class App extends Component {
       ) {
         definition[value.word] = value.definition;
     } else {
-      const newDef = lookupWord({'inputWord': value});
+      // TODO Remove userOptions when LookupWord has been split
+      const newDef = lookupWord({'inputWord': value, 'userOptions': this.state.userOptions});
       definition[newDef.word] = newDef.definition;
     }
     const newDefs = {

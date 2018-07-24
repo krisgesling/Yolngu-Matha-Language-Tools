@@ -2,17 +2,20 @@ import dictionary from '../data/dictionary.js'
 import createRegex from './CreateRegex.js'
 
 // TODO Split word search from word lookup
-function lookupWord({inputWord, isFlexiSearch}) {
+// TODO result highlight can be found with
+// regex.exec.index through to
+// index+regex.exec[0].length
+function lookupWord({inputWord, userOptions}) {
   const regex = createRegex({
     'cleanInput': inputWord.toLowerCase(),
-    'isFlexiSearch': isFlexiSearch
+    'isFlexiSearch': userOptions.isFlexiSearch
   });
 
   const suggestionList = inputWord.length > 0
     ? Object.keys(dictionary)
       .filter(word => {
-        return regex.test(word)
-          || regex.test(dictionary[word].En);
+        return (userOptions.searchYolngu && regex.test(word))
+          || (userOptions.searchEnglish && regex.test(dictionary[word].En));
       }).map((word, i) => {
       if (regex.test(word)) {
         return {

@@ -55,7 +55,7 @@ class UserInput extends Component {
     });
     const inputLookup = lookupWord({
       'inputWord': yolnguVal.newValue,
-      'isFlexiSearch': this.props.userOptions.isFlexiSearch
+      'userOptions': this.props.userOptions
     });
     const caretPos = yolnguVal.modified
       ? e.target.selectionEnd-1
@@ -74,7 +74,15 @@ class UserInput extends Component {
     let newObj = this.props;
     newObj.userOptions[key] = this.props.userOptions[key] ? false : true;
     this.props.updateState(newObj);
-    if (key === 'isFlexiSearch') this.handleInputChange();
+    if ( key.slice(0,6) === 'search'
+    && this.props.userOptions.searchYolngu === false
+    && this.props.userOptions.searchEnglish === false ) {
+      const mockEvent = key === 'searchYolngu'
+        ? {'target': {'id': 'user-option-searchEnglish'}}
+        : {'target': {'id': 'user-option-searchYolngu'}}
+        this.toggleOption(mockEvent);
+    }
+    this.handleInputChange();
   }
   render() {
     return (
@@ -85,19 +93,44 @@ class UserInput extends Component {
           onChange={this.handleInputChange}
           ref="input"
         />
-        <div className="switch-container">
-          <span className="label">FlexiSearch</span>
-          <label className="switch" >
-            <input
-              id="user-option-isFlexiSearch"
-              type="checkbox"
-              checked={this.props.userOptions.isFlexiSearch}
-              onChange={this.toggleOption}
-            />
-            <span className="slider round"></span>
-          </label>
+        <div className="config-container">
+          <div className="switch-container">
+            <span className="label">Yolŋu Matha</span>
+            <label className="switch" >
+              <input
+                id="user-option-searchYolngu"
+                type="checkbox"
+                checked={this.props.userOptions.searchYolngu}
+                onChange={this.toggleOption}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          <div className="switch-container">
+            <span className="label">English</span>
+            <label className="switch" >
+              <input
+                id="user-option-searchEnglish"
+                type="checkbox"
+                checked={this.props.userOptions.searchEnglish}
+                onChange={this.toggleOption}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+          <div className="switch-container">
+            <span className="label">FlexiSearch</span>
+            <label className="switch" >
+              <input
+                id="user-option-isFlexiSearch"
+                type="checkbox"
+                checked={this.props.userOptions.isFlexiSearch}
+                onChange={this.toggleOption}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
         </div>
-
       </div>
     );
   }
