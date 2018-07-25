@@ -52,7 +52,7 @@ function lookupWord({inputWord, userOptions}) {
    'word': lexeme,
    'definition': definition,
    'suggestions': suggestions,
-   'totalSuggestions': suggestionList.length
+   'totalSuggestions': inputWord.length > 0 ? suggestionList.length : null
  };
 }
 

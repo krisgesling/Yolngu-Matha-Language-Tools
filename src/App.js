@@ -18,7 +18,7 @@ class App extends Component {
         'sortAZ': false
       },
       'suggestions': {},
-      'totalSuggestions': 0,
+      'totalSuggestions': null,
       'definitions': {}
     };
     this.updateState = this.updateState.bind(this);
@@ -81,9 +81,6 @@ class App extends Component {
         <UserInput
           ref="userInput"
           userOptions={this.state.userOptions}
-          userInput={this.state.userInput}
-          caretPos={this.state.caretPos}
-          modKey={this.state.caretPos}
           updateState={this.updateState}
         />
         <WordSuggestions
@@ -91,6 +88,7 @@ class App extends Component {
           totalSuggestions={this.state.totalSuggestions}
           addDefinition={this.addDefinition}
           onSelectSuggestion={this.selectedSuggestion}
+          userOptions={this.state.userOptions}
         />
         <Definitions
           words={this.state.definitions}

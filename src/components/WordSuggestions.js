@@ -40,6 +40,17 @@ class WordSuggestions extends Component {
             </tbody>
           </table>
         }
+        {this.props.totalSuggestions === 0 &&
+          <div className="no-results">
+            <p>No results found.</p>
+            {!this.props.userOptions.isFlexiSearch &&
+              <div>
+                <p>You might like to try FlexiSearch by activating the switch beneath the search bar.</p>
+                <p>This will try to match characters that are commonly misspelt or misheard such as n, ṉ, and ŋ.</p>
+              </div>
+            }
+          </div>
+        }
       </div>
     );
   }

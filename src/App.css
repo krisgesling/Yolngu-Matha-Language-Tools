@@ -386,6 +386,12 @@ div.user-input {
 .word-suggestions {
   justify-self: end;
 }
+.no-results > p:nth-child(1){
+  font-weight: 700;
+}
+.no-results p:nth-child(n){
+  font-style: italic;
+}
 .definitions {
   justify-self: start;
 }
