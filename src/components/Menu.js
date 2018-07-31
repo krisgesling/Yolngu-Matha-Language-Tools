@@ -67,8 +67,11 @@ class Menu extends Component {
         <section className={this.setItemClassName('about')}>
           <h2 onClick={this.toggleMenuItem}>About</h2>
           <div className="accordian">
-            <p>Type in Yolŋu matha characters without a custom keyboard.</p>
-            <p>Just type ';' then the corresponding key.</p>
+            <p>This is a work in progress. The full dictionary is not publicly available at this time. Subscribe above for updates!</p>
+            <p>You can search the few hundred available words using either Yolŋu Matha or English. These can be searched simultaneously or one at a time using the switches below the search box.</p>
+            <p>FlexiSearch allows you to find words without knowing the precise spelling. With this activated the search algorithm will match multiple characters. Typing 'n' for example will match 'n', 'ṉ', 'ŋ', 'nh', or 'ny'.</p>
+            <p>You can also type in Yolŋu Matha characters on any device without a custom keyboard installed.</p>
+            <p>Simply type ';' then the corresponding key. So to get 'ä' type ';' + 'a'.</p>
             <table>
               <thead>
                 <tr>
@@ -96,7 +99,6 @@ class Menu extends Component {
                 </tr>
               </tbody>
             </table>
-            <p>The full dictionary is not publicly available at this time. Subscribe above for updates!</p>
           </div>
         </section>
         <section className={this.setItemClassName('contact')}>
