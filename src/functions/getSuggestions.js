@@ -1,11 +1,10 @@
 import dictionary from '../data/dictionary.js'
 import createRegex from './CreateRegex.js'
 
-// TODO Split word search from word lookup
 // TODO result highlight can be found with
 // regex.exec.index through to
 // index+regex.exec[0].length
-function lookupWord({inputWord, userOptions}) {
+function getSuggestions({inputWord, userOptions}) {
   const regex = createRegex({
     'cleanInput': inputWord.toLowerCase(),
     'isFlexiSearch': userOptions.isFlexiSearch
@@ -56,4 +55,4 @@ function lookupWord({inputWord, userOptions}) {
  };
 }
 
-export default lookupWord
+export default getSuggestions

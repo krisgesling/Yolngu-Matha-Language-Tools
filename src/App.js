@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import UserInput from './components/UserInput.js';
 import Menu from './components/Menu.js';
-import lookupWord from './functions/LookupWord';
+import getWord from './functions/getWord';
 import WordSuggestions from './components/WordSuggestions';
 import Definitions from './components/Definitions';
 
@@ -46,8 +46,7 @@ class App extends Component {
       ) {
         definition[value.word] = value.definition;
     } else {
-      // TODO Remove userOptions when LookupWord has been split
-      const newDef = lookupWord({'inputWord': value, 'userOptions': this.state.userOptions});
+      const newDef = getWord({'inputWord': value});
       definition[newDef.word] = newDef.definition;
     }
     const newDefs = {

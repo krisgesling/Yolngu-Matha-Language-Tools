@@ -163,7 +163,7 @@ a, a:visited {
   max-width: 90vw;
 }
 .menu section.active .accordian {
-  height: calc(100vh - 120px - 44px - 54px - 2 * (3em + 20px));
+  height: calc(100vh - 80px - 44px - 54px - 2 * (3em + 20px));
   overflow-y: scroll;
   transition: height 1s;
 }

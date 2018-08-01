@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import lookupWord from '../functions/LookupWord';
+import getSuggestions from '../functions/getSuggestions';
 
 class UserInput extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class UserInput extends Component {
       'prevValue': this.state.userInput,
       'newInput': e.target.value
     });
-    const inputLookup = lookupWord({
+    const inputLookup = getSuggestions({
       'inputWord': yolnguVal.newValue,
       'userOptions': this.props.userOptions
     });
