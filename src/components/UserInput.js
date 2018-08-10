@@ -87,7 +87,8 @@ class UserInput extends Component {
   render() {
     return (
       <div className="user-input">
-        <textarea
+        <input
+          type="text"
           placeholder="You can type in Yolŋu Matha or English..."
           value={this.state.userInput}
           onChange={this.handleInputChange}
