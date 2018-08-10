@@ -26,9 +26,6 @@ function getSuggestions({inputWord, userOptions}) {
           'word': word,
           'weight': regex.exec(dictionary[word].En).index / dictionary[word].En.length / -1
         }
-      } else return {
-        'word': word,
-        'weight': 0
       }
     })
     : [];
@@ -41,15 +38,7 @@ function getSuggestions({inputWord, userOptions}) {
       suggestions[suggestion.word] = dictionary[suggestion.word].En;
     })
   }
-  const definition = (dictionary[inputWord])
-    ? dictionary[inputWord].En
-    : ''
-  const lexeme = (dictionary[inputWord])
-    ? inputWord
-    : ''
  return {
-   'word': lexeme,
-   'definition': definition,
    'suggestions': suggestions,
    'totalSuggestions': inputWord.length > 0 ? suggestionList.length : null
  };
