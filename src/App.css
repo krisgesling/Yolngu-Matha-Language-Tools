@@ -1,6 +1,7 @@
 :root {
   --rgb-green: 0, 230, 0;
   --rgb-red: 230, 46, 0;
+  --rgb-blue: 33, 150, 243;
 }
 /***** BASE STYLES *****/
 .App {
@@ -25,6 +26,9 @@ a, a:visited {
   font-size: 0.8em;
   color: #555;
   float: left;
+}
+mark {
+  background-color: rgba(var(--rgb-blue), 0.15);
 }
 /***** END - BASE STYLES *****/
 .App {
@@ -291,10 +295,10 @@ a, a:visited {
   transition: .4s;
 }
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: rgb(var(--rgb-blue));
 }
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px rgb(var(--rgb-blue));
 }
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);

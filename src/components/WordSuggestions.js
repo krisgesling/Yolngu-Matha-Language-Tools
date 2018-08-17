@@ -5,12 +5,38 @@ class WordSuggestions extends Component {
   addDefinition(definition) {
     this.props.addDefinition(definition)
   }
+  wordCell({string, marks}) {
+    const td = (marks[0])
+      ? (<td>
+          {marks.map((mark, i, arr) => { return (
+            <span>
+            {string.substring((arr[i-1] ? arr[i-1][1] : 0), arr[i][0])}
+            <mark>
+              {string.substring(mark[0], mark[1])}
+            </mark>
+            {arr.length-1 === i && string.substring(marks[marks.length-1][1])}
+            </span>
+          )})}
+        </td>)
+      : (<td>
+          {string}
+        </td>);
+
+    return td;
+  }
   render() {
+    console.log('props.words: ', this.props.words);
     const suggestions = Object.keys(this.props.words).map((word, i) => {
       return (
         <tr key={i+1} >
-          <td>{word}</td>
-          <td>{this.props.words[word]}</td>
+          {this.wordCell({
+            'string': word,
+            'marks': this.props.words[word].lexemeMarks
+          })}
+          {this.wordCell({
+            'string': this.props.words[word].definition,
+            'marks': this.props.words[word].glossMarks
+          })}
           <td>
             <button className="btn add" onClick={() => this.addDefinition(word)}>
               +

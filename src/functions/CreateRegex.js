@@ -59,7 +59,7 @@ function createRegex({cleanInput, isFlexiSearch}) {
       return returnStr;
     }).join('')
   }
-  return new RegExp(`${fuzzyString || cleanInput}`, 'i');
+  return new RegExp(`${fuzzyString || cleanInput}`, 'ig');
 }
 
 export default createRegex
