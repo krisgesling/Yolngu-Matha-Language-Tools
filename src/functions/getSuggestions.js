@@ -1,9 +1,6 @@
 import dictionary from '../data/dictionary.js'
 import createRegex from './CreateRegex.js'
 
-// TODO result highlight can be found with
-// regex.exec.index through to
-// index+regex.exec[0].length
 function getSuggestions({inputWord, userOptions}) {
   const regex = createRegex({
     'cleanInput': inputWord.toLowerCase(),
@@ -20,30 +17,18 @@ function getSuggestions({inputWord, userOptions}) {
       }).map((word, i) => {
         const localRegex = new RegExp(regex);
         if (localRegex.test(word)) {
-          // const regexResult = regex.exec(word);
-
           const localRegex = new RegExp(regex);
           let localRegexArr;
           let marks = [];
-          // if (word === 'baḏuwaḏuyun') console.log('Double result');
           while ((localRegexArr = localRegex.exec(word)) !== null) {
-            // if (word === 'baḏubaḏuyun') console.log('Found: ', localRegexArr);
-            // regexResults.push(localRegexArr);
             marks.push([localRegexArr.index, localRegex.lastIndex])
-            // if (localRegexArr.input === 'yämiṉḏa') console.log('Single result');
-            // if (word === 'baḏuwaḏuyun') console.log('Double result');
-            // if (word === 'baḏubaḏuyun') console.log('Next match at: ', localRegex.lastIndex);
           }
-          // if (word === 'baḏuwaḏuyun') console.log('Results: ', regexResults);
-
           return {
             'word': word,
             'lexemeMarks': marks,
             'weight': marks[0][0] / word.length / -1
           }
-        } else // if (localRegex.test(dictionary[word].En))
-        // unneccessary test above as array is already filtered.
-        {
+        } else {
           const localRegex = new RegExp(regex);
           let localRegexArr;
           let marks = [];
@@ -53,9 +38,7 @@ function getSuggestions({inputWord, userOptions}) {
           return {
             'word': word,
             'glossMarks': marks,
-            // 'glossMarks': regexResults.map(e => e.index),
             'weight': marks[0][0] / dictionary[word].En.length / -1
-            //'weight': localRegex.exec(dictionary[word].En).index / dictionary[word].En.length / -1
           }
         }
       })
@@ -72,7 +55,6 @@ function getSuggestions({inputWord, userOptions}) {
         'glossMarks':  suggestion.glossMarks ? suggestion.glossMarks : []
       };
     })
-    // marksList = suggestionList.map(s => s.marks);
   }
  return {
    'suggestions': suggestions,
