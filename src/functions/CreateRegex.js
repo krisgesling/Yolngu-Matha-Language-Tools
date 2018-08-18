@@ -21,14 +21,14 @@ function createRegex({cleanInput, isFlexiSearch}) {
           returnStr = '[bp]'
           break;
         case 'd':
-        case 'ḏ': //dh dj dy
-        case 't': //th tj ty
+        case 'ḏ':
+        case 't':
         case 'ṯ':
-          returnStr = '[dḏtṯ][hjy]*'
+          returnStr = '[dḏtṯ][hy]*'
           break;
         case 'g':
         case 'k':
-          returnStr = '[gk]'
+          returnStr = '[gk]+'
           break;
         case 'l':
         case 'ḻ':
@@ -43,14 +43,24 @@ function createRegex({cleanInput, isFlexiSearch}) {
           returnStr = 'r+'
           break;
         case 'h':
-        case 'y':
-          if (arr[i-1] === 'd' || arr[i-1] === 'n') {
+          if (arr[i-1] === 'd' || arr[i-1] === 'n' || arr[i-1] === 't' ) {
             returnStr = `${char}*`
+          } else {
+            returnStr = `${char}`
           }
           break;
         case 'j':
-          if (arr[i-1] === 'd') {
+          if (arr[i-1] === 'd' || arr[i-1] === 't' ) {
+            returnStr = `${char}`
+          } else {
+            returnStr = '[dt]j'
+          }
+          break;
+        case 'y':
+          if (arr[i-1] === 'n' ) {
             returnStr = `${char}*`
+          } else {
+            returnStr = `${char}`
           }
           break;
         default:
