@@ -346,7 +346,7 @@ div.user-input {
   width: 80%;
   max-width: 500px;
 }
-.user-input textarea {
+.user-input input {
   grid-column: 1 / -1;
   justify-self: center;
   width: 100%;
@@ -354,10 +354,11 @@ div.user-input {
   margin: 0;
   border: 1px solid black;
   border-radius: 3px;
-  padding: 0.2em;
+  padding: 0.2em 0.4em;
+  font-size: 1em;
 }
 @media (max-width:750px) {
-  .user-input textarea {
+  .user-input input {
     height: 2.6em;
   }
 }

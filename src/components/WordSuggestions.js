@@ -9,12 +9,12 @@ class WordSuggestions extends Component {
     const td = (marks[0])
       ? (<td>
           {marks.map((mark, i, arr) => { return (
-            <span>
-            {string.substring((arr[i-1] ? arr[i-1][1] : 0), arr[i][0])}
-            <mark>
-              {string.substring(mark[0], mark[1])}
-            </mark>
-            {arr.length-1 === i && string.substring(marks[marks.length-1][1])}
+            <span key={i+1}>
+              {string.substring((arr[i-1] ? arr[i-1][1] : 0), arr[i][0])}
+              <mark>
+                {string.substring(mark[0], mark[1])}
+              </mark>
+              {arr.length-1 === i && string.substring(marks[marks.length-1][1])}
             </span>
           )})}
         </td>)
@@ -25,7 +25,6 @@ class WordSuggestions extends Component {
     return td;
   }
   render() {
-    console.log('props.words: ', this.props.words);
     const suggestions = Object.keys(this.props.words).map((word, i) => {
       return (
         <tr key={i+1} >
